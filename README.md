@@ -1,4 +1,4 @@
-# TIL　***Today I Learned***
+# TIL - ***Today I Learned***
 
 日々の学習をアウトプットしていく
 * 対象：Python, 機械学習関連
