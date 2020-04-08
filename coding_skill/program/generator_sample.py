@@ -31,3 +31,16 @@ def main():
 if __name__ == '__main__':
     main()
 
+    # Line #    Mem usage    Increment   Line Contents
+    # ================================================
+    #     18  37.1562 MiB  37.1562 MiB   @profile(precision=4)
+    #     19                             def main():
+    #     20  37.1602 MiB   0.0039 MiB       words = ['Python', 'CSS', 'HTML', 'JavaScript']
+    #     21
+    #     22                                 # test list append process & check memory
+    #     23  37.1641 MiB   0.0000 MiB       for text in word_edit_list(words):
+    #     24  37.1641 MiB   0.0039 MiB           print(text)
+    #     25
+    #     26                                 # test generator process & check memory
+    #     27  37.1641 MiB   0.0000 MiB       for text in word_edit_gen(words):
+    #     28  37.1641 MiB   0.0000 MiB           print(text)
