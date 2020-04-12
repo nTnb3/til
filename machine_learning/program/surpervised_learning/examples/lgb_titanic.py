@@ -6,7 +6,7 @@ import pandas as pd
 
 sys.path.append("..")
 from transformaer.transformer_csv import TransformerCsv
-from model.lightGBM import LgbClassifer
+from model.lightGBM import LgbClassifier
 from trainer.trainer import Trainer
 from utils.plot_classification_result import PlotClassificationResult
 
@@ -46,7 +46,7 @@ def titanic_data_transform(transformer):
 def main():
     config = load_config(config_file_name="lgb_titanic.ini")
     data = load_data(data_file_name="titanic_training.csv")
-    lgb_model = LgbClassifer(config=config)
+    lgb_model = LgbClassifier(config=config)
 
     transformer = TransformerCsv(data=data, config=config)
 
