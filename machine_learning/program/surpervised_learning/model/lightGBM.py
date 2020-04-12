@@ -11,3 +11,7 @@ class LgbClassification(object):
 
         return  lgb_classifer
 
+
+class LgbRgression(object):
+    def __init__(self):
+        raise NotImplementedError
