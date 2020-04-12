@@ -1,17 +1,20 @@
 import lightgbm as lgb
 
+
 class LgbClassification(object):
     def __init__(self, config):
-        self.params =
+        self.params = config.get('model_params', 'lgb_params')
+        if self.params is None:
+            self.params = {}
+
         self.build()
 
-
     def build(self):
-        lgb_classifer = lgb.LGBMClassifier(**self.params)
+        lgb_classifier = lgb.LGBMClassifier(**self.params)
 
-        return  lgb_classifer
+        return lgb_classifier
 
 
-class LgbRgression(object):
+class LgbRegression(object):
     def __init__(self):
         raise NotImplementedError
