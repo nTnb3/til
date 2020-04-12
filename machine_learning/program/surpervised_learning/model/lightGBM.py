@@ -2,7 +2,7 @@ import lightgbm as lgb
 
 
 class LgbClassifier(object):
-    def __init__(self, model_params=[]):
+    def __init__(self, model_params={}):
         self.params = model_params
 
         self.build()
