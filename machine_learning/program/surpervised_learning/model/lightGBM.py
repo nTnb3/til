@@ -1,7 +1,7 @@
 import lightgbm as lgb
 
 
-class LgbClassification(object):
+class LgbClassifier(object):
     def __init__(self, config):
         self.params = config.get('model_params', 'lgb_params')
         if self.params is None:
@@ -15,6 +15,6 @@ class LgbClassification(object):
         return lgb_classifier
 
 
-class LgbRegression(object):
+class LgbRegressor(object):
     def __init__(self):
         raise NotImplementedError
