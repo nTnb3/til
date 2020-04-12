@@ -53,7 +53,7 @@ def main():
     train_data, test_data = titanic_data_transform(transformer)
 
     lgb_trainer = Trainer(config=config)
-    lgb_model = lgb_trainer.fit(model=lgb_model, train_data=train_data)
+    lgb_trainer.fit(model=lgb_model.lgb_classifier, train_data=train_data)
 
     pred_result = lgb_model.eval(test_data=test_data)
 
