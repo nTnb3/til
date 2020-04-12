@@ -8,9 +8,7 @@ class LgbClassifier(object):
         self.build()
 
     def build(self):
-        lgb_classifier = lgb.LGBMClassifier(**self.params)
-
-        return lgb_classifier
+        self.lgb_classifier = lgb.LGBMClassifier(**self.params)
 
 
 class LgbRegressor(object):
