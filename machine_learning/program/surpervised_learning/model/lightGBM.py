@@ -2,10 +2,8 @@ import lightgbm as lgb
 
 
 class LgbClassifier(object):
-    def __init__(self, config):
-        self.params = config.get('model_params', 'lgb_params')
-        if self.params is None:
-            self.params = {}
+    def __init__(self, model_params=[]):
+        self.params = model_params
 
         self.build()
 
