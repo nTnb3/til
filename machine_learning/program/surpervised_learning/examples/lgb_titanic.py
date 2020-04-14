@@ -37,7 +37,8 @@ def titanic_data_transform(transformer):
     :param transformer:データ前処理クラス
     :return:titanic_training.csvを用いた生存予測を実施するための前処理済みデータ
     """
-    transformer.fillna # 欠損値の補完
+    transformer.fill_nan_mean() # 欠損値の補完
+    transformer.split_train_test_data()
     train_data, test_data = transformer.plot_data()
 
     return train_data, test_data
