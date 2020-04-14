@@ -48,7 +48,7 @@ def main():
     data = load_data(data_file_name="titanic_training.csv")
     lgb_model = LgbClassifier(model_params=config.get('model_params', 'lgb_params'))
 
-    transformer = TransformerCsv(data=data, config=config)
+    transformer = TransformerCsv(data=data)
 
     train_data, test_data = titanic_data_transform(transformer)
 
