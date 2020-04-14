@@ -1,4 +1,4 @@
-import  pandas as pd
+from sklearn.model_selection import train_test_split
 
 
 class TransformerCsv(object):
@@ -14,3 +14,5 @@ class TransformerCsv(object):
     def drop_nan_col(self):
         self.data_df = self.data_df.dropna(how='any', axis=1)
 
+    def calc_moving_ave(self, param, window=3):
+        self.data_df = self.data_df[param].rolling(window=window).mean()
