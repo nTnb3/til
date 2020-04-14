@@ -5,7 +5,7 @@ class TransformerCsv(object):
     def __init__(self, data_df):
         self.data_df = data_df
 
-    def fill_nan(self):
+    def fill_nan_mean(self):
         self.data_df = self.data_df.fillna(self.data_df.mean())
 
     def drop_nan_row(self):
@@ -18,6 +18,8 @@ class TransformerCsv(object):
         self.data_df = self.data_df[param].rolling(window=window).mean()
 
     def split_train_test_data(self, test_size=0.4, shuffle=False):
-        train_df, test_df = train_test_split(self.data_df, test_size=test_size, shuffle=shuffle)
+        self.train_df, self.test_df = train_test_split(self.data_df, test_size=test_size, shuffle=shuffle)
 
-        return train_df, test_df
+    def plot_data(self):
+        return self.train_df, self.test_df
+
