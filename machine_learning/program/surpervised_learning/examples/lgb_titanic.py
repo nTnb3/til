@@ -44,12 +44,12 @@ def titanic_data_transform(transformer):
 
 
 def main():
-    config = load_config(config_file_name="lgb_titanic.ini")
+    config = load_config(config_file_name="lgb_titanic_config.ini")
     data = load_data(data_file_name="titanic_training.csv")
 
     transformer = TransformerCsv(data_df=data)
 
-    # lgb_model = LgbClassifier(model_params=config.get('model_params', 'lgb_params'))
+    lgb_model = LgbClassifier(model_params=config.get('model_params', 'lgb_params'))
 
 
 
