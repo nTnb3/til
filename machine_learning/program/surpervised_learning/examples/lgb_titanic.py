@@ -7,7 +7,7 @@ import pandas as pd
 
 sys.path.append('../')
 from transformer.transformer_csv import TransformerCsv
-# from model.lightGBM import LgbClassifier
+from model.lightGBM import LgbClassifier
 # from trainer.trainer import Trainer
 # from utils.plot_classification_result import PlotClassificationResult
 
@@ -55,12 +55,10 @@ def main():
 
     lgb_model = LgbClassifier(model_params=config.get('model_params', 'lgb_params'))
 
-
-
     train_data, test_data = titanic_data_transform(transformer)
 
     lgb_trainer = Trainer(config=config)
-    lgb_trainer.fit(model=lgb_model.lgb_classifier, train_data=train_data)
+    lgb_trainer.fit(model=lgb_model.lgb_classifier, train_data_df=train_data)
 
     pred_result = lgb_model.eval(test_data=test_data)
 
