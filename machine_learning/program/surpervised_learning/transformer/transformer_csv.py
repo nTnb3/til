@@ -2,8 +2,9 @@ from sklearn.model_selection import train_test_split
 
 
 class TransformerCsv(object):
-    def __init__(self, data_df):
+    def __init__(self, data_df, config):
         self.data_df = data_df
+        self.config = config
 
     def fill_nan_mean(self):
         self.data_df = self.data_df.fillna(self.data_df.mean())
@@ -20,6 +21,10 @@ class TransformerCsv(object):
     def drop_columns(self, drop_list):
         for drop_col in drop_list:
             self.data_df = self.data_df.drop(drop_col)
+
+    def encode_label(self, encode_label_list):
+
+    def encode_category(self, categorical_list):
 
     def split_train_test_data(self, test_size=0.4, shuffle=False):
         self.train_df, self.test_df = train_test_split(self.data_df, test_size=test_size, shuffle=shuffle)
