@@ -42,8 +42,12 @@ def titanic_data_transform(transformer):
     """
 
     drop_list = ["Name", "Ticket", "Cabin"]
+    label_encoding_list = ["Pclass"]
+    categorical_list = ["Survived", "Sex", "Embarked"]
+
     transformer.fill_nan_mean()  # 欠損値の補完
     transformer.drop_columns(drop_list)
+
     transformer.split_train_test_data()
     train_data, test_data = transformer.plot_data()
 
