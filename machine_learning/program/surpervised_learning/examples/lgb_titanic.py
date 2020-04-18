@@ -1,3 +1,4 @@
+import errno
 import os
 import sys
 
@@ -14,8 +15,9 @@ from transformer.transformer_csv import TransformerCsv
 def load_config(config_file_name):
     config_dir = "../configs"
     config_path = os.path.join(config_dir, config_file_name)
-
     config_file = configparser.ConfigParser()
+    if not os.path.exists(config_path):
+        raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), config_ini_path)
     config_file.read(config_path)
 
     return config_file
