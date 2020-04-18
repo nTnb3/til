@@ -17,6 +17,10 @@ class TransformerCsv(object):
     def calc_moving_ave(self, param, window=3):
         self.data_df = self.data_df[param].rolling(window=window).mean()
 
+    def drop_columns(self, drop_list):
+        for drop_col in drop_list:
+            self.data_df = self.data_df.drop(drop_col)
+
     def split_train_test_data(self, test_size=0.4, shuffle=False):
         self.train_df, self.test_df = train_test_split(self.data_df, test_size=test_size, shuffle=shuffle)
 
