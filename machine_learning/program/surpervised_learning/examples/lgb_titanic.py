@@ -8,7 +8,7 @@ import pandas as pd
 sys.path.append('../')
 from transformer.transformer_csv import TransformerCsv
 from model.lightGBM import LgbClassifier
-# from trainer.trainer import Trainer
+from trainer.trainer import Trainer
 # from utils.plot_classification_result import PlotClassificationResult
 
 
