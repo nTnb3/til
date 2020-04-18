@@ -26,8 +26,10 @@ def load_config(config_file_name):
 def load_data(data_file_name):
     data_dir = "../dataset"
     data_path = os.path.join(data_dir, data_file_name)
-    data = pd.read_csv(data_path)
-
+    try:
+        data = pd.read_csv(data_path)
+    except FileNotFoundError:
+        print("FileNotFoundError")
     return data
 
 
