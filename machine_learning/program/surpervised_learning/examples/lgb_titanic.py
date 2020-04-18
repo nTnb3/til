@@ -40,7 +40,10 @@ def titanic_data_transform(transformer):
     :param transformer:データ前処理クラス
     :return:titanic_training.csvを用いた生存予測を実施するための前処理済みデータ
     """
+
+    drop_list = ["Name", "Ticket", "Cabin"]
     transformer.fill_nan_mean()  # 欠損値の補完
+    transformer.drop_columns(drop_list)
     transformer.split_train_test_data()
     train_data, test_data = transformer.plot_data()
 
@@ -51,7 +54,7 @@ def main():
     config = load_config(config_file_name="lgb_titanic_config.ini")
     data = load_data(data_file_name="titanic_training.csv")
 
-    transformer = TransformerCsv(data_df=data)
+    transformer = TransformerCsv(data_df=data, )
 
     lgb_model = LgbClassifier(model_params=config.get('model_params', 'lgb_params'))
 
