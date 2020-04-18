@@ -3,12 +3,13 @@ import lightgbm as lgb
 
 class LgbClassifier(object):
     def __init__(self, model_params={}, use_model_param_config=False):
+        params = {}
         if use_model_param_config:
-            self.params = model_params
-        self.build()
+            params = model_params
+        self.build(params)
 
-    def build(self):
-        self.lgb_classifier = lgb.LGBMClassifier(**self.params)
+    def build(self, params):
+        self.lgb_classifier = lgb.LGBMClassifier(**params)
 
 
 class LgbRegressor(object):
