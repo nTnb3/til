@@ -23,6 +23,12 @@ class TransformerCsv(object):
             self.data_df = self.data_df.drop(drop_col)
 
     def encode_category_to_ordinal_int(self, encode_ordinal_map_dict):
+        """
+        カテゴリカル変数を順序付き数値に変換する
+        :param encode_ordinal_map_dict:
+            key:変換したいカテゴリカル変数名
+            value:カテゴリカル変数における値と変換値との対応辞書
+        """
         for ordinal_categorical_param, ordinal_map in encode_ordinal_map_dict.item():
             self.data_df[ordinal_categorical_param] = self.data_df[ordinal_categorical_param].map(ordinal_map)
 
