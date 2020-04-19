@@ -2,9 +2,8 @@ from sklearn.model_selection import train_test_split
 
 
 class TransformerCsv(object):
-    def __init__(self, data_df, config):
+    def __init__(self, data_df):
         self.data_df = data_df
-        self.config = config
 
     def fill_nan_mean(self):
         self.data_df = self.data_df.fillna(self.data_df.mean())
