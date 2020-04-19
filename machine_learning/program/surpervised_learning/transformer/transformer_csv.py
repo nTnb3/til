@@ -19,7 +19,7 @@ class TransformerCsv(object):
 
     def drop_columns(self, drop_list):
         for drop_col in drop_list:
-            self.data_df = self.data_df.drop(drop_col)
+            self.data_df = self.data_df.drop(columns=drop_col)
 
     def encode_category_to_ordinal_int(self, encode_ordinal_map_dict):
         """
