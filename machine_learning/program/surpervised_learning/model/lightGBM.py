@@ -6,10 +6,13 @@ class LgbClassifier(object):
         params = {}
         if use_model_param_config:
             params = model_params
-        self.build(params)
+        self._build(params)
 
-    def build(self, params):
+    def _build(self, params):
         self.model = lgb.LGBMClassifier(**params)
+
+    def eval(self, test_data):
+        return self.model.predict(test_data)
 
 
 class LgbRegressor(object):
