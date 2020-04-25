@@ -69,7 +69,7 @@ def main():
 
     pred_result = lgb_model.eval(test_data=test_data)
 
-    print("test acc:", ploter.calc_acc)
+    print("test acc:", pred_result)
 
 
 if __name__ == '__main__':
