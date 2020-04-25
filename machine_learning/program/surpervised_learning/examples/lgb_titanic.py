@@ -59,12 +59,12 @@ def main():
 
     transformer = TransformerCsv(data_df=data)
 
-    lgb_model = LgbClassifier(model_params=config.get('model_params', 'lgb_params'), 
+    lgb_model = LgbClassifier(model_params=config.get('model_params', 'lgb_params'),
                               target_col=config.get('data_columns', 'target_col'))
 
     train_data, test_data = titanic_data_transform(transformer)
 
-    lgb_trainer = Trainer(config=config)
+    lgb_trainer = Trainer()
     lgb_model.model = lgb_trainer.fit(model=lgb_model.model, train_data_df=train_data)
 
     pred_result = lgb_model.eval(test_data=test_data)
