@@ -1,6 +1,6 @@
 class Trainer(object):
-    def __init__(self, config):
-        self.target =config.get('train_params', 'target_param')
+    def __init__(self):
+        pass
 
     def fit(self, model, train_data_df):
         y_train = train_data_df[self.target]
