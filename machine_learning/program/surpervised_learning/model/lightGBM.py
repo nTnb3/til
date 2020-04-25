@@ -1,5 +1,5 @@
 import lightgbm as lgb
-
+from sklearn.metrics import accuracy_score
 
 class LgbClassifier(object):
     def __init__(self, model_params, target_col, use_model_param_config=False):
@@ -13,12 +13,16 @@ class LgbClassifier(object):
         self.model = lgb.LGBMClassifier(**params)
 
     def _predict(self, test_data):
-        self.model.predict(test_data)
+        return self.model.predict(test_data)
 
     def eval(self, test_data):
-        y_data = test_data[]
-        x_data =
-        return self.model.predict(test_data)
+        y_data = test_data[self.target]
+        x_data = test_data.drop(columns=self.target)
+
+        predict = self._predict(x_data)
+        acc_score = accuracy_score(y_data, predict)
+
+        return acc_score
 
 
 class LgbRegressor(object):
