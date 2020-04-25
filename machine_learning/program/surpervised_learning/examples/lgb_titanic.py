@@ -65,7 +65,7 @@ def main():
     train_data, test_data = titanic_data_transform(transformer)
 
     lgb_trainer = Trainer()
-    lgb_model.model = lgb_trainer.fit(model=lgb_model, train_data_df=train_data)
+    lgb_model.model = lgb_trainer.fit(model_class=lgb_model, train_data_df=train_data)
 
     pred_result = lgb_model.eval(test_data=test_data)
 
