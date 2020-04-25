@@ -2,7 +2,8 @@ import lightgbm as lgb
 
 
 class LgbClassifier(object):
-    def __init__(self, model_params={}, use_model_param_config=False):
+    def __init__(self, model_params, target_col, use_model_param_config=False):
+        self.target = target_col
         params = {}
         if use_model_param_config:
             params = model_params
@@ -11,7 +12,12 @@ class LgbClassifier(object):
     def _build(self, params):
         self.model = lgb.LGBMClassifier(**params)
 
+    def _predict(self, test_data):
+        self.model.predict(test_data)
+
     def eval(self, test_data):
+        y_data = test_data[]
+        x_data =
         return self.model.predict(test_data)
 
 
