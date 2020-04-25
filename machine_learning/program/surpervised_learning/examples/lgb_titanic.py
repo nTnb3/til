@@ -69,7 +69,6 @@ def main():
 
     pred_result = lgb_model.eval(test_data=test_data)
 
-    ploter = PlotClassificationResult(result=pred_result)
     print("test acc:", ploter.calc_acc)
 
 
