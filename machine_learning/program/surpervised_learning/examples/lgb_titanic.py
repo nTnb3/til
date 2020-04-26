@@ -68,9 +68,10 @@ def main():
     lgb_trainer = Trainer()
     lgb_model = lgb_trainer.fit(model_class=lgb_model, train_data_df=train_data)
 
-    pred_result = lgb_model.eval(test_data=test_data)
+    eval_dict = lgb_model.eval(test_data=test_data)
 
-    print("test acc:", pred_result)
+    print("test acc:", eval_dict["acc"])
+    print("conf_matrix", eval_dict["conf_matrix"])
 
 
 if __name__ == '__main__':
