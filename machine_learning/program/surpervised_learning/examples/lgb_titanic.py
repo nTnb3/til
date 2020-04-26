@@ -9,6 +9,7 @@ sys.path.append('../')
 from transformer.transformer_csv import TransformerCsv
 from model.lightGBM import LgbClassifier
 from trainer.trainer import Trainer
+from utils.set_randomseed import set_randomseed
 
 
 def load_config(config_file_name):
@@ -55,6 +56,7 @@ def titanic_data_transform(transformer):
 def main():
     config = load_config(config_file_name="lgb_titanic_config.ini")
     data = load_data(data_file_name="titanic_training.csv")
+    set_randomseed()
 
     transformer = TransformerCsv(data_df=data)
 
