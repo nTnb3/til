@@ -24,11 +24,11 @@ class LgbClassifier(object):
     def _predict(self, test_data):
         return self.model.predict(test_data)
 
-    def _calc_eval(self, y_true, y_pred):
-        acc_score = accuracy_score(y_true, y_pred)
-        conf_matrix = confusion_matrix(y_true, y_pred)
+    def _calc_acc(self, y_true, y_pred):
+        return accuracy_score(y_true, y_pred)
 
-        return acc_score, conf_matrix
+    def _calc_conf_matrix(self, y_true, y_pred):
+        return confusion_matrix(y_true, y_pred)
 
     def eval(self, test_data):
         eval_def = {}
@@ -36,7 +36,8 @@ class LgbClassifier(object):
         x_data = test_data.drop(columns=self.target)
         predict = self._predict(x_data)
 
-        eval_def["acc"], eval_def["conf_matrix"] = self._calc_eval(y_true=y_data, y_pred=predict)
+        eval_def["acc"] = self._calc_acc(y_true=y_data, y_pred=predict)
+        eval_def["conf_matrix"] = self._calc_conf_matrix(y_true=y_data, y_pred=predict)
 
         return eval_def
 
