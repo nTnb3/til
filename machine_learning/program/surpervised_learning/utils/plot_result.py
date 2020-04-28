@@ -14,6 +14,7 @@ class PlotClassificationResult(object):
         plt.xlabel('FPR: False positive rate')
         plt.ylabel('TPR: True positive rate')
         plt.grid()
+        plt.title("ROC Curve")
         if plot_show:
             plt.show()
         if seve_img:
