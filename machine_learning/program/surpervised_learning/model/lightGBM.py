@@ -1,7 +1,9 @@
 from csv import DictReader
+
 import lightgbm as lgb
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
+from sklearn.metrics import roc_curve
 
 
 
@@ -30,14 +32,17 @@ class LgbClassifier(object):
     def _calc_conf_matrix(self, y_true, y_pred):
         return confusion_matrix(y_true, y_pred)
 
+    def _calc_roc_curve(self, y_ture, y_pred):
+        return roc_curve(y_ture, y_pred)
+
     def eval(self, test_data):
         eval_def = {}
         y_data = test_data[self.target]
         x_data = test_data.drop(columns=self.target)
         predict = self._predict(x_data)
-
         eval_def["acc"] = self._calc_acc(y_true=y_data, y_pred=predict)
         eval_def["conf_matrix"] = self._calc_conf_matrix(y_true=y_data, y_pred=predict)
+        eval_def["roc_curve"] = self._calc_roc_curve(y_ture=y_data, y_pred=predict)
 
         return eval_def
 
