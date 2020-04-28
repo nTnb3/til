@@ -18,7 +18,7 @@ class PlotClassificationResult(object):
         if plot_show:
             plt.show()
         if seve_img:
-            plt.savefig("../log/")
+            plt.savefig("../log/roc.png")
 
 class PlotRegressionResult(object):
     def __init__(self):
