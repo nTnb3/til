@@ -38,6 +38,9 @@ class TransformerCsv(object):
     def split_train_test_data(self, test_size=0.4, shuffle=False):
         self.train_df, self.test_df = train_test_split(self.data_df, test_size=test_size, shuffle=shuffle)
 
-    def plot_data(self):
+    def plot_train_test_data(self):
         return self.train_df, self.test_df
+
+    def plot_data(self):
+        return self.data_df
 
