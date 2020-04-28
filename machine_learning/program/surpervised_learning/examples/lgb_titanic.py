@@ -16,7 +16,6 @@ def titanic_data_transform(transformer):
     :param transformer:データ前処理クラス
     :return:titanic_training.csvを用いた生存予測を実施するための前処理済みデータ
     """
-
     drop_list = ["Name", "Ticket", "Cabin"]
     categorical_list = ["Survived", "Sex", "Embarked"]
 
@@ -24,7 +23,7 @@ def titanic_data_transform(transformer):
     transformer.drop_columns(drop_list)
     transformer.encode_category_to_int(categorical_list=categorical_list)
     transformer.split_train_test_data(test_size=0.2)
-    train_data, test_data = transformer.plot_data()
+    train_data, test_data = transformer.plot_train_test_data()
 
     return train_data, test_data
 
