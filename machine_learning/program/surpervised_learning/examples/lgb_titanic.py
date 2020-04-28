@@ -47,7 +47,7 @@ def titanic_data_transform(transformer):
     transformer.fill_nan_mean()  # 欠損値の補完
     transformer.drop_columns(drop_list)
     transformer.encode_category_to_int(categorical_list=categorical_list)
-    transformer.split_train_test_data()
+    transformer.split_train_test_data(test_size=0.2)
     train_data, test_data = transformer.plot_data()
 
     return train_data, test_data
