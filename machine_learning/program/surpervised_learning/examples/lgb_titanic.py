@@ -17,7 +17,7 @@ def titanic_data_transform(transformer):
     :return:titanic_training.csvを用いた生存予測を実施するための前処理済みデータ
     """
     drop_list = ["Name", "Ticket", "Cabin"]
-    categorical_list = ["Survived", "Sex", "Embarked"]
+    categorical_list = ["Sex", "Embarked"]
 
     transformer.fill_nan_mean()  # 欠損値の補完
     transformer.drop_columns(drop_list)
