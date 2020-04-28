@@ -10,6 +10,8 @@ from transformer.transformer_csv import TransformerCsv
 from model.lightGBM import LgbClassifier
 from trainer.trainer import Trainer
 from utils.set_randomseed import set_randomseed
+from utils.plot_result import PlotClassificationResult
+
 
 
 def load_config(config_file_name):
@@ -72,6 +74,9 @@ def main():
 
     print("test acc:", eval_dict["acc"])
     print("conf_matrix", eval_dict["conf_matrix"])
+    result_ploter = PlotClassificationResult()
+    result_ploter.plot_roc_curve(roc_tapple=eval_dict["roc_curve"], plot_show=True)
+
 
 
 if __name__ == '__main__':
