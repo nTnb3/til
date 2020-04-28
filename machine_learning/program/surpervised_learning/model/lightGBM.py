@@ -33,7 +33,7 @@ class LgbClassifier(object):
         return confusion_matrix(y_true, y_pred)
 
     def _calc_roc_curve(self, y_ture, y_pred):
-        return roc_curve(y_ture, y_pred)
+        return roc_curve(y_ture, y_pred, drop_intermediate=False)
 
     def eval(self, test_data):
         eval_def = {}
