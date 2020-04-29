@@ -48,8 +48,7 @@ def main():
     print("test acc:", eval_dict["acc"])
     print("conf_matrix", eval_dict["conf_matrix"])
     result_ploter = PlotClassificationResult()
-    result_ploter.plot_roc_curve(roc_tapple=eval_dict["roc_curve"], plot_show=True)
-
+    result_ploter.plot_roc_curve(roc_tapple=eval_dict["roc_curve"], plot_show=False)
 
 
 if __name__ == '__main__':
