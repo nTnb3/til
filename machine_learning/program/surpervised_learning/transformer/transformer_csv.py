@@ -35,6 +35,9 @@ class TransformerCsv(object):
         for categorical_param in categorical_list:
             self.data_df[categorical_param] = self.data_df[categorical_param].astype('category').cat.codes
 
+    def encode_one_hot(self, encode_col):
+        self.data_df = self.data_df.get_dummies(self.data_df, columns=[encode_col])
+
     def split_train_test_data(self, test_size=0.4, shuffle=False):
         self.train_df, self.test_df = train_test_split(self.data_df, test_size=test_size, shuffle=shuffle)
 
