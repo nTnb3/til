@@ -1,4 +1,6 @@
+import pandas as pd
 from sklearn.model_selection import train_test_split
+
 
 
 class TransformerCsv(object):
@@ -36,7 +38,8 @@ class TransformerCsv(object):
             self.data_df[categorical_param] = self.data_df[categorical_param].astype('category').cat.codes
 
     def encode_one_hot(self, encode_col):
-        self.data_df = self.data_df.get_dummies(self.data_df, columns=[encode_col])
+        one_hot_df = pd.get_dummies(self.data_df[encode_col])
+        self.data_df = pd.concat([self.data_df, one_hot_df], axis=1)
 
     def split_train_test_data(self, test_size=0.4, shuffle=False):
         self.train_df, self.test_df = train_test_split(self.data_df, test_size=test_size, shuffle=shuffle)
