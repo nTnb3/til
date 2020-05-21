@@ -9,5 +9,10 @@ class NeuralNetworkClassifier(object):
         self._build()
 
     def _build(self):
+        model = tf.keras.Sequential()
+        model.add(tf.keras.layers.Dense(self.middle_layer_list[0],  activation="relu", input_shape=(self.input_layer_num,)))
+        for layer in self.middle_layer_list[1:]:
+            model.add(tf.keras.layers.Dense(layer, activation="relu"))
+        model.add(tf.keras.layers.Dense(self.output_layer_num)
 
 
