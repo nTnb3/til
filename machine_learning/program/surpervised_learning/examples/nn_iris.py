@@ -5,6 +5,7 @@ import tensorflow as tf
 
 
 sys.path.append('../')
+from model.neural_network import NeuralNetworkClassifier
 from transformer.transformer_csv import TransformerCsv
 from trainer.trainer import Trainer
 from utils.set_randomseed import set_randomseed
@@ -30,12 +31,11 @@ def main():
     # config = load_config(config_file_name="lgb_titanic_config.ini")
     data = load_data(data_file_name="iris.csv")
     set_randomseed()
-
     transformer = TransformerCsv(data_df=data)
-
+    nn_model = NeuralNetworkClassifier()
     train_data, test_data = iris_data_transform(transformer)
-
     nn_trainer = Trainer()
+    nn_model = nn_trainer.fit(model_class=nn_model, train_data_df=train_data)
 
 
 if __name__ == '__main__':
