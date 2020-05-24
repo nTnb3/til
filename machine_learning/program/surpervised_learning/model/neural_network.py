@@ -6,6 +6,7 @@ class NeuralNetworkClassifier(object):
         self.input_layer_num = input_layer_num
         self.middle_layer_list = middle_layer_list
         self.output_layer_num = output_layer_num
+        self.histry = None
         self._build()
 
     def _build(self):
