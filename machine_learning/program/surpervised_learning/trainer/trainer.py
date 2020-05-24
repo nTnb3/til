@@ -9,5 +9,13 @@ class Trainer(object):
 
         return model_class
 
-    def fit_tf_nn(self, model_class, train_data_df):
-        model_class.model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+class TrainerNeuralNetwork(Trainer):
+    def __init__(self, optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy']):
+        super().__init__()
+        self.optimizer = optimizer
+        self.loss = loss
+        self.metrics = metrics
+
+    def fit(self, model_class, train_data_df):
+        model_class.model.compile(optimizer=self.optimizer, loss=self.loss, metrics=self.metrics)
