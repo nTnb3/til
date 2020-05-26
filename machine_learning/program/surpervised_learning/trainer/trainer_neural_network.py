@@ -1,16 +1,23 @@
 import tensorflow as tf
-
 from trainer import Trainer
 
 class TrainerNeuralNetwork(Trainer):
     def __init__(self):
         super().__init__()
 
-    def _callbacks(self, ):
-        earlystopping = tf.keras.callbacks.EarlyStopping(patience=2, restore_best_weights=True)
+    def _callbacks(self,
+                   monitor='val_loss',
+                   patience=2,
+                   verbose=0,
+                   restore_best_weights=True,
+
+                   ):
+        earlystopping = tf.keras.callbacks.EarlyStopping(monitor=monitor, patience=patience,
+                                                         verbose=verbose, restore_best_weights=restore_best_weights)
         model_checkpoint = tf.keras.callbacks.ModelCheckpoint(
                  '../data/temp/mnist_sequential_{epoch:03d}_{val_loss:.4f}.h5',
-                 save_best_only=True
+                 save_best_only=True)
+        lr_scheduler = tf.keras.callbacks.LearningRateScheduler(lambda epoch: float(learning_rates[epoch]))
 
     def fit(self,
             model_class,
