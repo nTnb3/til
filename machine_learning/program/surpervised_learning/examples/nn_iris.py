@@ -7,7 +7,7 @@ import tensorflow as tf
 sys.path.append('../')
 from model.neural_network import NeuralNetworkClassifier
 from transformer.transformer_csv import TransformerCsv
-from trainer.trainer import Trainer
+from trainer.trainer_neural_network import TrainerNeuralNetwork
 from utils.set_randomseed import set_randomseed
 from utils.plot_result import PlotClassificationResult
 from utils.load_file import load_data, load_config
@@ -34,7 +34,7 @@ def main():
     transformer = TransformerCsv(data_df=data)
     nn_model = NeuralNetworkClassifier()
     train_data, test_data = iris_data_transform(transformer)
-    nn_trainer = Trainer()
+    nn_trainer = TrainerNeuralNetwork()
     nn_model = nn_trainer.fit(model_class=nn_model, train_data_df=train_data, task_name="iris")
 
 
