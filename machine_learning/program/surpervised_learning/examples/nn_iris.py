@@ -35,7 +35,7 @@ def main():
     nn_model = NeuralNetworkClassifier()
     train_data, test_data = iris_data_transform(transformer)
     nn_trainer = Trainer()
-    nn_model = nn_trainer.fit(model_class=nn_model, train_data_df=train_data)
+    nn_model = nn_trainer.fit(model_class=nn_model, train_data_df=train_data, task_name="iris")
 
 
 if __name__ == '__main__':
