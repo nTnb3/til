@@ -2,7 +2,7 @@ import os
 
 import numpy as np
 import tensorflow as tf
-from trainer import Trainer
+from trainer.trainer import Trainer
 
 class TrainerNeuralNetwork(Trainer):
     def __init__(self):
