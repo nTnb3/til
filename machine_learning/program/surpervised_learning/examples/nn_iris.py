@@ -3,8 +3,6 @@ import sys
 
 import tensorflow as tf
 
-
-sys.path.append('../')
 from model.neural_network import NeuralNetworkClassifier
 from transformer.transformer_csv import TransformerCsv
 from trainer.trainer_neural_network import TrainerNeuralNetwork
