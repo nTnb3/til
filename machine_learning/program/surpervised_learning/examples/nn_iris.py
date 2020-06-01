@@ -1,8 +1,5 @@
 import sys
 
-
-import tensorflow as tf
-
 from model.neural_network import NeuralNetworkClassifier
 from transformer.transformer_csv import TransformerCsv
 from trainer.trainer_neural_network import TrainerNeuralNetwork
@@ -34,6 +31,8 @@ def main():
     train_data, test_data = iris_data_transform(transformer)
     nn_trainer = TrainerNeuralNetwork()
     nn_model = nn_trainer.fit(model_class=nn_model, train_data_df=train_data, task_name="iris")
+    eval_dict = nn_model.eval(test_data=test_data)
+
 
 
 if __name__ == '__main__':
