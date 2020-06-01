@@ -23,16 +23,15 @@ def iris_data_transform(transformer):
 
 
 def main():
-    # config = load_config(config_file_name="lgb_titanic_config.ini")
+    config = load_config(config_file_name="nn_iris_config.ini")
     data = load_data(data_file_name="iris.csv")
     set_randomseed()
     transformer = TransformerCsv(data_df=data)
-    nn_model = NeuralNetworkClassifier()
+    nn_model = NeuralNetworkClassifier(target_col=config.get('data_columns', 'target_col'))
     train_data, test_data = iris_data_transform(transformer)
     nn_trainer = TrainerNeuralNetwork()
     nn_model = nn_trainer.fit(model_class=nn_model, train_data_df=train_data, task_name="iris")
     eval_dict = nn_model.eval(test_data=test_data)
-
 
 
 if __name__ == '__main__':
