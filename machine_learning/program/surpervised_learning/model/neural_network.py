@@ -12,7 +12,7 @@ class NeuralNetworkClassifier(object):
         self.middle_layer_list = middle_layer_list
         self.output_layer_num = output_layer_num
         self.histry = None
-        self._build()
+        self.model = self._build()
 
     def _build(self):
         model = tf.keras.Sequential()
@@ -20,6 +20,8 @@ class NeuralNetworkClassifier(object):
         for layer in self.middle_layer_list[1:]:
             model.add(tf.keras.layers.Dense(layer, activation="relu"))
         model.add(tf.keras.layers.Dense(self.output_layer_num, activation='softmax'))
+
+        return model
 
     def _predict(self, test_data):
         predict = self.model.predict(test_data)
