@@ -4,6 +4,7 @@ import numpy as np
 import tensorflow as tf
 from trainer.trainer import Trainer
 
+
 class TrainerNeuralNetwork(Trainer):
     def __init__(self):
         self.model_path = "../data/models/"
@@ -67,7 +68,7 @@ class TrainerNeuralNetwork(Trainer):
             validation_split=0.2):
 
         y_train = train_data_df[model_class.target]
-        x_train = train_data_df.drop(columns=model_class.target)
+        x_train = train_data_df.drop(columns=model_class.target_col)
         model_class.model.compile(optimizer=optimizer, loss=loss, metrics=metrics)
         model_class.history = model_class.model.fit(x_train, y_train, epoch=epoch,
                                                     batch_size=batch_size, validation_split=validation_split,
