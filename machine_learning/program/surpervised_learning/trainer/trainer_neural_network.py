@@ -18,24 +18,22 @@ class TrainerNeuralNetwork(Trainer):
                    monitor='val_loss',
                    patience=2,
                    verbose=0,
-                   restore_best_weights=True,
                    lr_start=0.03,
                    lr_end=0.001,
                    nb_epoch=1000):
 
         earlystopping = self._early_stopping(is_earlystopping=is_earlystopping, monitor=monitor, patience=patience,
-                                            verbose=verbose, restore_best_weights=restore_best_weights)
+                                             verbose=verbose)
         model_checkpoint = self._model_checkpoint(is_model_checkpoint=is_model_checkpoint, task_name=task_name)
         lr_scheduler = self._lr_scheduler(is_lr_scheduler=is_lr_scheduler, start=lr_start, stop=lr_end, nb_epoch=nb_epoch)
 
         callbacks = [earlystopping, model_checkpoint, lr_scheduler]
         return callbacks
 
-    def _early_stopping(self, is_earlystopping, monitor, patience, verbose, restore_best_weights):
+    def _early_stopping(self, is_earlystopping, monitor, patience, verbose):
         if not is_earlystopping:
             return None
-        earlystopping = tf.keras.callbacks.EarlyStopping(monitor=monitor, patience=patience,
-                                                         verbose=verbose, restore_best_weights=restore_best_weights)
+        earlystopping = tf.keras.callbacks.EarlyStopping(monitor=monitor, patience=patience, verbose=verbose)
         return earlystopping
 
     def _model_checkpoint(self, is_model_checkpoint, task_name ,save_best_only=True):
