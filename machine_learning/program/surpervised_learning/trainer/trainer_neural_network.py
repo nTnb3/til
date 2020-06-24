@@ -31,8 +31,8 @@ class TrainerNeuralNetwork(Trainer):
         callbacks = [earlystopping, model_checkpoint, lr_scheduler]
         return callbacks
 
-    def _early_stopping(self, is_early_stopping, monitor, patience, verbose, restore_best_weights):
-        if not is_early_stopping:
+    def _early_stopping(self, is_earlystopping, monitor, patience, verbose, restore_best_weights):
+        if not is_earlystopping:
             return None
         earlystopping = tf.keras.callbacks.EarlyStopping(monitor=monitor, patience=patience,
                                                          verbose=verbose, restore_best_weights=restore_best_weights)
@@ -67,7 +67,7 @@ class TrainerNeuralNetwork(Trainer):
             metrics=['accuracy'],
             validation_split=0.2):
 
-        y_train = train_data_df[model_class.target]
+        y_train = train_data_df[model_class.target_col]
         x_train = train_data_df.drop(columns=model_class.target_col)
         model_class.model.compile(optimizer=optimizer, loss=loss, metrics=metrics)
         model_class.history = model_class.model.fit(x_train, y_train, epoch=epoch,
