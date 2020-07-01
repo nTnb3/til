@@ -40,6 +40,7 @@ class TransformerCsv(object):
     def encode_one_hot(self, encode_col):
         one_hot_df = pd.get_dummies(self.data_df[encode_col])
         self.data_df = pd.concat([self.data_df, one_hot_df], axis=1)
+        self.data_df = self.data_df.drop(columns=encode_col)
 
     def split_train_test_data(self, test_size=0.4, shuffle=False):
         self.train_df, self.test_df = train_test_split(self.data_df, test_size=test_size, shuffle=shuffle)
