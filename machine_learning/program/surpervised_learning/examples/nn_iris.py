@@ -27,7 +27,7 @@ def main():
     data = load_data(data_file_name="iris.csv")
     set_randomseed()
     transformer = TransformerCsv(data_df=data)
-    nn_model = NeuralNetworkClassifier(target_col=config.get('data_columns', 'target_col'))
+    nn_model = NeuralNetworkClassifier(target_col="Name", class_num=len(data["Name"].unique()))
     train_data, test_data = iris_data_transform(transformer)
     nn_trainer = TrainerNeuralNetwork()
     nn_model = nn_trainer.fit(model_class=nn_model, train_data_df=train_data, task_name="iris")
