@@ -65,8 +65,8 @@ class TrainerNeuralNetwork(Trainer):
             metrics=['accuracy'],
             validation_split=0.2):
 
-        y_train = train_data_df[model_class.target_col]
-        x_train = train_data_df.drop(columns=model_class.target_col)
+        y_train = train_data_df.iloc[:, -model_class.class_num:]
+        x_train = train_data_df.iloc[:, :-model_class.class_num]
         model_class.model.compile(optimizer=optimizer, loss=loss, metrics=metrics)
         model_class.history = model_class.model.fit(x_train, y_train, epoch=epoch,
                                                     batch_size=batch_size, validation_split=validation_split,
