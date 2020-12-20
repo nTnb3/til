@@ -12,8 +12,8 @@
         情報を受取るにはPHPなどのサーバーで実行するプログラミング言語が必要。
         <br><br>
         <ul>
-            <li>作成例1：</li>
-                <form action="receive_dummy1.php" method="GET">
+            <li>作成例1（基本入力フォーム）：</li>
+                <form action="receive_dummy.php" method="GET">
                     <dl>
                         <dt>名前</dt>
                             <dd><input type="text" name="usr_name" value="山田太郎"></dd>
@@ -26,13 +26,36 @@
                     </dl>
                 </form>
 
-            <li>作成例2；</li>
-                <form action="receive_dummy2.php" method="GET">
+            <li>作成例2（メッセージボックス）；</li>
+                <form action="receive_dummy.php" method="GET">
                     <p>
                         <dt>メッセージ</dt>
                         <textarea name="message" cols="30" rows="10"></textarea>
                     </p>
                     <p><input type="submit" name="send_message" value="送信"></p>
+                </form>
+                
+            <li>作成例3（セレクトボックス）；</li>
+                <form action="receive_dummy.php" method="GET">
+                    <dl>
+                        <dt>希望職種</dt>
+                        <dd>
+                            <select name="job">
+                                <option value="webディレクター">webディレクター</option>
+                                <option value="webデザイナー">webデザイナー</option>
+                                <option value="webプログラマー">webプログラマー</option>
+                            </select>
+                        </dd>
+                    </dl>
+                </form>
+            
+            <li>作成例4（ラベル）：</li>
+                <form action="receive_dummy" method="GET">
+                    <p>
+                    <label>
+                        名前：<input type="text" name="your_name">
+                    </label>
+                    </p>
                 </form>
         </ul>
     </body>
