@@ -13,11 +13,16 @@
         <br><br>
         作成例：
         <form action="receive_dummy.php" method="GET">
-            <dt>名前</dt>
-            <input　type="text" name="usr_name" value="山田太郎">
-            <dt>性別</dt>
-            <input type="radio" name="male">男
-            <input type="radio" name="female">女
+            <dl>
+                <dt>名前</dt>
+                    <dd><input type="text" name="usr_name" value="山田太郎"></dd>
+                <dt>性別</dt>
+                    <dd><input type="radio" name="gender" value="male">男</dd>
+                    <dd><input type="radio" name="gender" value="female">女</dd>
+                <dt>パスワード</dt>
+                    <dd><input type="password" name="pass"></dd>
+                <p><input type="submit" value="ログイン"></p>
+            </dl>
         </form>
     </body>
 </html>
