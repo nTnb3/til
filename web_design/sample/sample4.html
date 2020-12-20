@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html  lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>Sample4</title>
+    </head>
+    <body>
+        <h1>フォーム関連の要素</h1>
+        ユーザーの入力フォーム作成<br>
+        <br>
+        ただし、<strong>送信した入力情報を受信することはHTMLではできない</strong>ので、
+        情報を受取るにはPHPなどのサーバーで実行するプログラミング言語が必要。
+        <br><br>
+        作成例：
+        <form action="receive_dummy.php" method="GET">
+            <dt>名前</dt>
+            <input　type="text" name="usr_name" value="山田太郎">
+            <dt>性別</dt>
+            <input type="radio" name="male">男
+            <input type="radio" name="female">女
+        </form>
+    </body>
+</html>
