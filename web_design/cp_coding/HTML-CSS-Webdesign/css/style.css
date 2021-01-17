@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+/* 共通部分
+------------------------------- */
+html {
+    font-size: 100%;
+}
+body{
+    font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", sans-serif;
+    line-height: 1.7;
+    color: #432;
+}
+a {
+    text-decoration: none;
+}
+img {
+    max-width: 100%;
+}
+
+/* HEADER
+------------------------------- */
+.logo {
+    width: 210px;
+    margin-top: 14px;
+    /* background-color: aqua; */
+}
+
+header{
+    /* background-color: aquamarine; */
+}
+
+.main-nav{
+    /* background-color: darkgray; */
+    display: flex;
+    font-size: 1.25rem;
+    text-transform: uppercase;  /*uppercaseにて文字を大文字にする*/
+    margin-top: 34px;
+    list-style: none;
+}
+
+.main-nav li{
+    /* background-color: darkorange; */
+    margin-left: 36px;
+
+}
+
+.main-nav a{
+    color: #432;
+}
+
+.main-nav a:hover{
+    color: #0bd;
+}
+
+.page-header{
+    display: flex;
+    justify-content: space-between;
+    /* background-color: darkgray; */
+}
+
+.wrapper{
+    /* background-color: darkorange;  */
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 4%;
+}
+
+.home-content{
+    /* background-color: brown; */
+    text-align: center;
+    margin-top: 10%;
+}
+
+.home-content p{
+    font-size: 1.125rem;
+    margin: 10px 0 42px; /*上　左右　下*/
+
+}
+
+/* 見出し */
+.page-title{
+    font-size: 5rem;
+    font-family: 'Philosopher', serif; /*あらゆる環境で見れるように基本的に複数個のフォントを指定する*/
+    text-transform: uppercase;
+    font-weight: normal; /*フォントの太さを指定*/
+}
+
+/*ボタン*/
+.button{
+    font-size: 1.375rem;
+    background: #0bd;
+    color: #fff;
+    border-radius: 5px;
+    padding: 18px 32px;
+}
+
+.button:hover{
+    background: #0090aa;
+}
+
+/* 大きな背景画像 */
+.big-bg{
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
+#home{
+    background-image: url(../images/main-bg.jpg);
+    min-height: 100vh;
+}
+
+#home .page-title{
+    text-transform: none;
+}
