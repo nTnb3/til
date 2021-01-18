@@ -113,3 +113,28 @@ header{
 #home .page-title{
     text-transform: none;
 }
+
+/* NEWS
+------------------------------- */
+#news {
+    background-image: url(../images/news-bg.jpg);
+    height: 270px;
+    margin-bottom: 40px;
+    background-color: #0090aa;
+
+}
+
+#news .page-title{
+    text-align: center;
+}
+
+footer{
+    background-color: #432;
+    text-align: center;
+    padding: 26px 0;
+}
+
+footer p{
+    color: #fff;
+    font-size: 0.875rem;
+}
