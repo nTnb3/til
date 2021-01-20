@@ -141,14 +141,16 @@ footer p{
 
 /* 記事部分 */
 article{
-    width: 74%;
+    width: 60%;
     /* background-color: aquamarine; */
+    order: 2;
 }
 
 /* サイドバー */
 aside{
     width: 22%;
     /* background-color: rgb(255, 242, 127); */
+    order: 3;
 }
 
 .news-contents{
@@ -232,6 +234,10 @@ aside p{
 
 .sub-menu a:hover{
     color: #0bd;
+}
+
+.ad{
+    order: 1;
 }
 
 /* モバイル版
