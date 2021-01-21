@@ -240,6 +240,29 @@ aside p{
     order: 1;
 }
 
+/* MENU
+-------------------------------  */
+#menu{
+    background-image: url(../images/menu-bg.jpg);
+    min-height: 100vh;
+}
+
+.menu-content{
+    max-width: 560px;
+    margin-top: 10%;
+    /* background-color: #432; */
+}
+
+.menu-content
+.page-title{
+    text-align: center;
+}
+
+.menu-content p{
+    font-size: 1.125rem;
+    margin: 10px 0 0;
+}
+
 /* モバイル版
 -------------------------------  */
 @media (max-width: 600px){
@@ -296,5 +319,10 @@ aside p{
     .post-cat,
     .post-title{
         margin-left: 80px;
+    }
+
+    /* MENU */
+    .menu-content{
+        margin-top: 20%;
     }
 }
