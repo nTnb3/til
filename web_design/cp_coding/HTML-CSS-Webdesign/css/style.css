@@ -263,6 +263,14 @@ aside p{
     margin: 10px 0 0;
 }
 
+
+.grid{
+    display: grid;
+    gap: 26px;
+    grid-template-columns: 1fr 1fr 1fr;/* 1:1:1に３列に並べる */
+    margin-top: 6%;
+    margin-bottom: 50px;
+}
 /* モバイル版
 -------------------------------  */
 @media (max-width: 600px){
