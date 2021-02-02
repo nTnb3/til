@@ -278,6 +278,79 @@ aside p{
     width: 100%;
     object-fit: cover;
 }
+
+/* CONTACT
+-------------------------------  */
+#contact{
+    background-image: url(../images/contact-bg.jpg);
+    min-height: 100vh;
+}
+
+
+form div{
+    /* background-color: #0bd; */
+    margin-bottom: 14px;
+
+}
+
+label{
+    font-size: 1.125rem;
+    /* background-color: #ddd; */
+    margin-bottom: 10px;
+    display: block;
+}
+
+input[type="text"],
+input[type="email"],
+textarea{
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px #fff solid;
+    border-radius: 5px;
+    padding: 10px;/* 枠と文字の幅 */
+    font-size: 1rem;
+}
+
+input[type="text"],
+input[type="email"]{
+    width: 100%;
+    max-width: 240px;
+}
+
+textarea{
+    width: 100%;
+    max-width: 480px;
+    height: 6rem;
+}
+
+input[type="submit"]{
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* 店舗情報・地図*/
+#location{
+    padding: 4% 0;
+}
+#location .wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.location-info{
+    width: 22%;
+}
+.location-info p{
+    padding: 12px 10px;
+}
+.location-map{
+    width: 74%;
+    /* background: rgba(223, 5, 114, 0.589); */
+}
+
+/* iframe*/
+iframe{
+    width: 100%;
+}
 /* モバイル版
 -------------------------------  */
 @media (max-width: 600px){
@@ -347,4 +420,18 @@ aside p{
     .big-box img{
         height: 100%;
     }
+    /* CONTACT */
+    #contact .page-title{
+        margin-top: 40px;
+    }
+    /* フォーム */
+    #contact .page-title{
+        margin-top: 40px;
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea{
+        max-width: 100%;
+    }
+
 }
