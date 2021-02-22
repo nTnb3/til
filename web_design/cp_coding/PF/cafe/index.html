@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" href="img/favicon.png">
     <link rel="stylesheet" media="all" href="css/ress.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" media="all" href="css/style.css" />
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/style.js"></script>
@@ -21,26 +22,24 @@
       <div class="container">
         <div class="row">
             <div class="col span-12 header">
-              <h1><a href="" class="logo">repos</a></h1>
-              <div class="header-box"><a href=""><span class="contact-button">お問い合わせ</span></a></div>
+              <h1><a href="" class="logo shop-name">repos</a></h1>
             </div>
         </div>
         <div class="row">
           <div class="col span-12">
-              <nav>
-                <div id="open"><img src="img/button.png"></div>
-                <div id="close"><img src="img/button2.png"></div>    
-                <div id="navi">
-                  <ul>
-                      <li><a href="index.html">ホーム</a></li>
-                      <li><a href="#1">商品について</a></li>
-                      <li><a href="#2">お客様の声</a></li>
-                      <li><a href="#3">申し込みの流れ</a></li>
-                      <li><a href="#4">アクセス</a></li>
-                      <li><a href="#5">お問い合わせ</a></li>
-                  </ul>
-                </div>
-              </nav>
+            <nav>
+              <div id="open"><img src="img/button.png"></div>
+              <div id="close"><img src="img/button2.png"></div>    
+              <div id="navi">
+                <ul>
+                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="#news">news</a></li>
+                    <li><a href="#about-repos">reposについて</a></li>
+                    <li><a href="#menu">menu</a></li>
+                    <li><a href="#access">access</a></li>
+                </ul>
+              </div>
+            </nav>
           </div>
         </div>
       </div>
@@ -53,7 +52,7 @@
         <h2><span>〜安らぎのひとときを〜</span></h2>
         <p>お店の名前であるrepos(ルポ)とはフランス語で「安らぎ」<br>ぜひreposで安らぎのひとときをお過ごしください</p>
       </div>
-      <div class="news">
+      <div id="news" class="news">
         <h2>news</h2>
         <ul>
           <li>20XX.1.1　ここに新着情報のテキストが入ります</li>
@@ -62,141 +61,97 @@
             <li>20XX.1.1　ここに新着情報のテキストが入ります</li>
         </ul>	
       </div>
-      <section id="1" class="gray-back">
-        <h2 class="center"><span class="under">商品について</span></h2>
-        <div class="container center">
-          <div class="row">
-            <div class="col span-4">
-              <img src="img/product.jpg" alt="ここに商品">
-              <h3>ここに商品が入ります</h3>
-              <p>ここに説明文が入ります</p>
+
+      <section id="about-repos" class="gray-back">
+        <h2 class="center"><span class="under">reposについて</span></h2>
+        <div class="shop-describe-container">
+          <div class="shop-describe">
+            <article>
+              <p>「repos」で安らぎのひとときを過ごしませんか。</p>
+              <p>緑とアンティークな店内で安らぎを。</p>
+              <p>【もっと文章を充実させる】</p>
+            </article>
+            <div class="shop-img">
+              <img src="img/orlova-maria-OED9lb8eNoE-unsplash.jpg" alt="店内イメージ">
             </div>
-            <div class="col span-4">
-              <img src="img/product.jpg" alt="ここに商品">
-              <h3>ここに商品が入ります</h3>
-              <p>ここに説明文が入ります</p>
+          </div>
+        <div class="shop-describe">
+            <div class="shop-img">
+              <img src="img/christina-rumpf-LMzwJDu6hTE-unsplash.jpg" alt="店内イメージ">
             </div>
-            <div class="col span-4">
-              <img src="img/product.jpg" alt="ここに商品">
-              <h3>ここに商品が入ります</h3>
-              <p>ここに説明文が入ります</p>
-            </div>
+            <article>
+                <p>厳選されたコーヒー豆</p>
+                <p>当店自慢のコーヒーをお楽しみください。</p>
+                <p>【もっと文章を充実させる】</p>
+              </article>
           </div>
         </div>
       </section>
   
-      <section id="2">
-        <h2 class="center"><span class="under">スタッフ紹介</span></h2>
-        <div class="container center">
-          <div class="row">
-            <div class="col span-4">
-              <img src="img/staff.jpg" alt="スタッフ">
-              <h3>スタッフ</h3>
-              <p>ここに説明文が入ります</p>
-            </div>
-            <div class="col span-4">
-              <img src="img/staff.jpg" alt="スタッフ">
-              <h3>スタッフ</h3>
-              <p>ここに説明文が入ります</p>
-            </div>
-            <div class="col span-4">
-              <img src="img/staff.jpg" alt="スタッフ">
-              <h3>スタッフ</h3>
-              <p>ここに説明文が入ります</p>
-            </div>
+      <section id="menu">
+        <h2 class="center"><span class="under">menu</span></h2>
+        <div class="grid container">
+          <div class="item">
+            <img src="img/brigitte-tohm-EAay7Aj4jbc-unsplash.jpg" alt="">
+            <p>品名</p>
           </div>
-        </div>
-      </section>
-  
-      <section id="3" class="gray-back">
-        <h2 class="center"><span class="under">申し込みの流れ</span></h2>
-        <div class="container">
-          <div class="row flow">
-            <div class="col span-3">
-              <img src="img/flow.jpg" alt="申し込み">
-            </div>
-            <div class="col span-9">
-              <p>ここに文章が入ります。ここに文章が入ります。ここに文章が入ります。</p>
-            </div>
-          </div>	
-          <div class="row flow">
-            <div class="col span-3">
-              <img src="img/flow.jpg" alt="申し込み">
-            </div>
-            <div class="col span-9">
-              <p>ここに文章が入ります。ここに文章が入ります。ここに文章が入ります。</p>
-            </div>
+          <div class="item">
+            <img src="img/nathan-dumlao-XOhI_kW_TaM-unsplash.jpg" alt="">
+            <p>品名</p>
           </div>
-          <div class="row flow">
-            <div class="col span-3">
-              <img src="img/flow.jpg" alt="申し込み">
-            </div>
-            <div class="col span-9">
-              <p>ここに文章が入ります。ここに文章が入ります。ここに文章が入ります。</p>
-            </div>
+          <div class="item">
+            <img src="img/ben-kolde-Z02YMhhW-gY-unsplash.jpg" alt="">
+            <p>品名</p>
           </div>
+          <div class="item">
+            <img src="img/casey-lee-awj7sRviVXo-unsplash.jpg" alt="">
+            <p>品名</p>
+          </div>
+          <div class="item">
+            <img src="img/kamil-kalbarczyk-G6GHgYfB3Hk-unsplash.jpg" alt="">
+            <p>品名</p>
+          </div>
+          <div class="item">
+            <img src="img/the-miscellanista-wKxC9_MzpeQ-unsplash.jpg" alt="">
+            <p>品名</p>
+          </div>
+          <div class="item">
+            <img src="img/wesual-click-BgirKolxbIk-unsplash.jpg" alt="">
+            <p>品名</p>
+          </div>
+          <div class="item">
+            <img src="img/note-thanun-B5uXKlluUQE-unsplash.jpg" alt="">
+            <p>品名</p>
+          </div>
+          <div class="item">
+            <img src="img/jayden-sim-twsroYSHxDA-unsplash.jpg" alt="">
+            <p>品名</p>
+          </div>
+                                      
         </div>
       </section>
     
-      <section id="4">
+      <section id="access"  class="gray-back">
         <h2 class="center"><span class="under">アクセス</span></h2>
-        <div class="container">
-          <div class="row">
-            <div class="col span-12">
-              <!-- GoogleMap -->
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27814443.96425483!2d120.28897720705172!3d31.679877148840735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34674e0fd77f192f%3A0xf54275d47c665244!2z5pel5pys!5e0!3m2!1sja!2sjp!4v1555153587836!5m2!1sja!2sjp" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-              <!-- /GoogleMap -->
-            </div>
-          </div>	
-        </div>
-      </section>
-    
-      <section id="5">
-        <h2 class="center"><span class="under">お問い合わせ</span></h2>
-        <div class="container">
-          <div class="row">
-            <div class="col span-6">
-              <div class="contact-box">
-                <p><img src="img/tel.png" alt="電話"></p>
-                <p>012-345-6789</p>
-              </div>
-            </div>
-            <div class="col span-6">
-              <div class="contact-box">
-                <p><img src="img/mail.png" alt="Eメール"></p>
-                <p>simple@mail.com</p>
-              </div>
-            </div>
-          </div>	
-          <div class="row">
-            <div class="col span-12">
-              <form method="post" action="">
-                <table class="table full-width">
-                  <tbody>
-                    <tr>
-                      <th><label for="name">お名前</label></th>
-                      <td><input class="full-width" type="text" name="お名前" placeholder="名前を記入" id="exampNameInput"></td>
-                    </tr>
-                    <tr>
-                      <th><label for="email">メールアドレス</label></th>
-                      <td><input class="full-width" type="email" name="Email" placeholder="メールアドレスを記入" id="exampleEmailInput"></td>
-                    </tr>
-                    <tr>
-                      <th><label for="tel">お電話番号</label></th>
-                      <td><input class="full-width" type="tel" name="お電話番号" placeholder="お電話番号を記入" id="exampleTellInput"></td>
-                    </tr>
-                    <tr>
-                      <th><label for="exampleMessage">お問い合わせ内容</label></th>
-                      <td><textarea class="full-width textarea" name="お問い合わせ内容" placeholder="用件をご記入ください …" id="exampleMessage"></textarea></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <p class="center"><input class="button" type="submit" value="送 信"></p>
-              </form>	
-            </div>
+        <div class="container">	
+          <h3 class="shop-name shop-info-center access-shop-logo">repos</h3>
+          <div class="top-bottom-bar">
+            ご予約・お問い合わせ <strong class="call-number"><i class="fa fa-phone"></i>◯◯◯◯-◯◯-◯◯◯◯</strong>
+            <p>ホームページを見たとお伝えいただけるとスムーズです。</p>
+          </div>
+          <div class="shop-info-center">
+            <ul>
+              <li>店名：repos(ルポ)</li>
+              <li>住所：〒◯◯◯-◯◯◯◯<br>◯◯県◯◯市◯◯-◯</li>
+              <li>アクセス：◯◯駅徒歩５分</li>
+              <li>営業時間：7:00〜21:00</li>
+              <li>定休日：毎週木曜日</li>
+              <li>その他：クレジットカード決済可</li>
+            </ul>
           </div>
         </div>
       </section>
+
     </main>
     <footer>
       <div class="container">
