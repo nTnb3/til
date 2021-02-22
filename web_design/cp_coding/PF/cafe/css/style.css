@@ -25,8 +25,12 @@ a:hover {
 	margin-left: auto;
 	margin-top: 8px;
 }
-.logo{
+.shop-name{
     font-family: 'Caveat', cursive;
+}
+
+.logo{
+    font-size: 200%;
 }
 
 .contact-button {
@@ -41,7 +45,7 @@ nav ul {
 	margin: 1rem 0 0 0;
 }
 nav li {
-	flex: 1 0 auto;
+	margin-left: 36px;
 }
 nav li a {
     text-decoration: none;
@@ -122,6 +126,27 @@ section {
 	background-color: #f4f4f4;
 }
 
+article{
+    width: 50%;
+    text-align : center;
+    margin: auto;
+    padding: 0 5%;
+}
+
+.shop-img{
+    width: 50%;
+    text-align : center;
+}
+
+.shop-img img{
+    width: 80%;
+}
+
+.shop-describe{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
 /*キャッチコピー
 -------------------------------------*/
 .catch {
@@ -151,6 +176,45 @@ section {
     list-style-type: none;
 	border-bottom: 1px solid #ccc;
 	padding: 0.5rem 0;
+}
+
+/*menu
+-------------------------------------*/
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2%;
+}
+
+#menu{
+    margin-top: 20px;
+}
+
+/*access
+-------------------------------------*/
+.access-shop-logo{
+    font-size: 300%;
+}
+
+.top-bottom-bar{
+    width: 45%;
+    border-bottom: 0.1rem solid #000;
+    border-top: 0.1rem solid #000;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.shop-info-center{
+    text-align: center;
+}
+
+.shop-info-center li{
+    list-style: none;
+}
+
+.call-number{
+    font-size: 150%;
 }
 
 /*申し込みの流れ
