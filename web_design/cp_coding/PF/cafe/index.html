@@ -13,7 +13,8 @@
     <link rel="stylesheet" media="all" href="css/style.css" />
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/style.js"></script>
-      
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/favicon.png">
   </head>
@@ -88,7 +89,7 @@
         </div>
       </section>
   
-      <section id="menu">
+      <section id="menu" class="gray-back">
         <h2 class="center"><span class="under">menu</span></h2>
         <div class="grid container">
           <div class="item">
@@ -132,7 +133,6 @@
       </section>
     
       <section id="access"  class="gray-back">
-        <h2 class="center"><span class="under">アクセス</span></h2>
         <div class="container">	
           <h3 class="shop-name shop-info-center access-shop-logo">repos</h3>
           <div class="top-bottom-bar">
@@ -149,31 +149,32 @@
               <li>その他：クレジットカード決済可</li>
             </ul>
           </div>
+          <div class="sns">
+              <div class="twitter">
+                <p><a href="https://twitter.com/share" class="twitter-share-button" data-url="index.html" data-text="reposで安らぎのひとときをお過ごしください" data-hashtags="repos">Tweet</a> </p>
+              </div>
+              <div class="line">
+                  <div class="line-it-button" data-lang="ja" data-type="like" data-url="http://index.html" style="display: none;"></div>
+              </div>
+          </div>
+          <nav>
+            <ul>
+              <li><a href="index.html">ホーム</a></li>
+              <li><a href="#news">news</a></li>
+              <li><a href="#about-repos">reposについて</a></li>
+              <li><a href="#menu">menu</a></li>
+              <li><a href="#access">access</a></li>
+            </ul>
+          </nav>
         </div>
       </section>
 
     </main>
     <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col span-4">
-            <h4>フッター1</h4>
-            <p>ここにSNSやテキストなどが入ります。SNSやテキストなどが入ります。</p>
-          </div>
-          <div class="col span-4">
-            <h4>フッター2</h4>
-            <p>ここにSNSやテキストなどが入ります。SNSやテキストなどが入ります。</p>
-          </div>
-          <div class="col span-4">
-            <h4>フッター3</h4>
-            <p>ここにSNSやテキストなどが入ります。SNSやテキストなどが入ります。</p>
-          </div>
-        </div>
+      <div class="copyright shop-name">
+          <a href="#">© repos.</a> 
       </div>
     </footer>
-    <div class="copyright">
-      <a href="https://popo-design.net" target="_blank">Copyright © popodesign.</a> 
-    </div>
     <p id="pagetop"><a href="#">TOP</a></p>
   </body>
 </html>
