@@ -40,12 +40,12 @@ a:hover {
 nav ul {
 	display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     list-style: none;
 	margin: 1rem 0 0 0;
 }
 nav li {
-	margin-left: 36px;
+	margin-left: 46px;
 }
 nav li a {
     text-decoration: none;
@@ -100,27 +100,18 @@ nav ul {
     display: none;
 }
 }
-    
-/*メイン画像
--------------------------------------*/
-.mainimg img {
-    /* height: 500px; */
-    
-}
-
-.mainimg{
-    /* margin-top: 0; */
-    /* background-color: #666; */
-}
 
 /*メインコンテンツ
 -------------------------------------*/
 main {
-    margin: 3rem 0 0 0;
+    /* margin: 3rem 0 0 0; */
+    margin: 0 auto;
+    width: 75%;
 }
 section {
-	margin: 5rem 0;
-	padding: 3rem 0;
+	margin: 3rem 0 0 0;
+    padding: 3rem 0;
+    
 }
 .gray-back {
 	background-color: #f4f4f4;
@@ -182,12 +173,13 @@ article{
 -------------------------------------*/
 .grid{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 2%;
 }
 
 #menu{
     margin-top: 20px;
+    padding-bottom: 100px;
 }
 
 /*access
@@ -207,6 +199,7 @@ article{
 
 .shop-info-center{
     text-align: center;
+    margin-bottom: 3rem;
 }
 
 .shop-info-center li{
@@ -217,42 +210,26 @@ article{
     font-size: 150%;
 }
 
-/*申し込みの流れ
--------------------------------------*/
-.flow.row {
-	margin-bottom: 3rem;
+.sns{
+    display: flex;
+    justify-content: center;
+    
 }
 
-/*フッター
--------------------------------------*/
-footer {
-    background-color: #f7f7f7;
-    padding: 5rem 0;
-}
-footer h4 {
-    border-bottom: 3px solid #ccc;
+.line{
+    margin-left: 26px;
 }
 
-/*お問い合わせ
--------------------------------------*/
-.contact-box {
-	border: 1px solid #ccc;
-	text-align: center;
-	padding: 2rem 0;
+.botom{
+    margin-left: 16px;
 }
-.table {
-	margin: 4rem 0;
-}
-.table th {
-	width: 250px;
-}
-
 /*コピーライト
 -------------------------------------*/
 .copyright {
     text-align: center;
     padding: 1rem 0;
     background-color: #000;
+    font-size: 3rem;
 }
 .copyright a {
     color: #fff;
@@ -288,13 +265,7 @@ footer h4 {
 .header-box {
 	display: none;
 }	
-/*お問い合わせ
--------------------------------------*/
-.table th {
-	width: 100%;
-	display: block;
-}	
-.table td {
-	display: block;
+.logo{
+    font-size: 150%;
 }
 }
