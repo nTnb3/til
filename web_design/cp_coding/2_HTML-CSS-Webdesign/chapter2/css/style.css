@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+/*
+GENERAL STYLING
+================================================ */
+html {
+    font-size: 100%;
+}
+body {
+	color: #555;
+	font-family: sans-serif;
+}
+
+section{
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.hero{
+    background-image: url(../images/bread1.jpg);
+    text-align: center;
+    padding-top: 10vh;
+}
+
+.title{
+    font-family: 'Dancing Script', cursive;
+    font-size: 7rem;
+    margin-bottom: 2rem; 
+}
+
+.container{
+    overflow: auto;
+    scroll-snap-type: y mandatory;
+    height: 100vh;
+}
+
+section{
+    height: 100vh;
+    scroll-snap-align: start;
+}
+
+/*
+MOBILE SIZE
+================================================ */
+@media (max-width: 700px){
+    .title{
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 400px){
+    .title{
+        font-size: 3rem;
+    }
+}
