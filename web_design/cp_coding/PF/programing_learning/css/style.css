@@ -255,11 +255,12 @@ section {
 .bottom-nav{
     list-style: none;
     font-size: 13px;
+    margin: 0;
 } 
 
 .sns{
     display: flex;
-    justify-content: left;
+    justify-content: center;
 }
 .sns li{
     margin-left: 10px;
