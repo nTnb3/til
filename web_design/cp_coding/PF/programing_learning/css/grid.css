@@ -41,6 +41,13 @@ body {
     width: 100%;
 }
 
+.row-center{
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  width: 100%;
+  justify-content: center;
+}
 .col {
     display: block;
     flex: 1 1 auto;
@@ -48,12 +55,22 @@ body {
     max-width: 100%;
     width: 100%;
 }
+
+.col-center{
+  display: flex;
+  justify-content: center;
+}
 /* 768px以上の表示 */
 @media ( min-width : 768px ) {
 .row {
     display: flex;
     flex-direction: row;
     padding: 0;
+}
+.row-center {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
 }
 .col {
     margin-left: 4%;
@@ -74,6 +91,10 @@ body {
 .row .col.span-3 {
     flex: 0 0 22%;
     max-width: 22%;
+}
+.row-center .col.span-3 {
+  flex: 0 0 22%;
+  max-width: 22%;
 }
 .row .col.span-4 {
     flex: 0 0 30.6666666667%;
