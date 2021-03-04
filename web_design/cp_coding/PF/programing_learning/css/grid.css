@@ -194,6 +194,11 @@ h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
   h6 { font-size: 1.5rem; }
 }
 
+@media screen and (max-width: 760px) {
+  .col{
+    margin-bottom: 20px;
+  }
+}
 p {
   margin-top: 0; }
 
