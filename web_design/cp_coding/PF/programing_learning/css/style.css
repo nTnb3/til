@@ -131,6 +131,7 @@ nav ul {
     width: 100%;
     object-fit: cover;
     object-position: 50% 100%;
+    margin-top: 0;
 }
 
 .main-img::after {
@@ -149,7 +150,7 @@ nav ul {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 35px;
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     top: 20rem;
     right: 20%;
     color: rgb(255, 255, 255);
@@ -281,20 +282,6 @@ footer h4 {
     border-bottom: 3px solid #ccc;
 }
 
-/*お問い合わせ
--------------------------------------*/
-.contact-box {
-	border: 1px solid #ccc;
-	text-align: center;
-	padding: 2rem 0;
-}
-.table {
-	margin: 4rem 0;
-}
-.table th {
-	width: 250px;
-}
-
 /*コピーライト
 -------------------------------------*/
 .copyright {
@@ -332,16 +319,66 @@ footer h4 {
 	
 /*ヘッダー
 -------------------------------------*/
+h1{
+    font-size: large;
+}
+h2{
+    font-size: 25px;
+}
+h3{
+    font-size: 20px;
+}
+p{
+    font-size: 13px;
+}
+main{
+    padding-top: 3rem;
+}
 .header-box {
 	display: none;
 }	
-/*お問い合わせ
--------------------------------------*/
-.table th {
-	width: 100%;
-	display: block;
-}	
-.table td {
-	display: block;
+
+.main-img {
+    height: 40vh;
+    width: 100%;
+}
+
+.catch {
+    font-size: 25px;
+    top: 10rem;
+    margin: 0 auto;
+}
+.catch h1 {
+    font-size: 40px;
+    padding-bottom: 1rem;
+}
+.under-catch {
+    margin-top: 5%;
+}
+
+.under-catch-button{
+    font-size: 15px;
+    width: 30%;
+    margin: 0 auto;
+}
+
+.contents-link-button{
+    width: 15%;
+    font-size: 10px;
+}
+
+.contents-img{
+    width: 60%;
+}
+
+.contents-img.many-language{
+    width: 70%;
+}
+
+.success{
+    margin-bottom: 20px;
+}
+.success img{
+    width: 40%;
 }
 }
