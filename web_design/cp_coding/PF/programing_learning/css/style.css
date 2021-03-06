@@ -3,7 +3,7 @@
 
 img {
 	max-width:100%;
-	height: auto;/*高さ自動*/
+	height: auto;
 }
 a {
     display:block;
@@ -128,7 +128,7 @@ nav ul {
     background-repeat: no-repeat;
     background-position: center center;
     height: 70vh;
-    min-height: 40vh;
+    /* min-height: 40vh; */
     position: relative;
     object-fit: cover;
     object-position: 50% 100%;
@@ -340,7 +340,7 @@ main{
 }	
 
 .main-img {
-    /* min-height: 40vh; */
+    height: 40vh;
     width: 100%;
 }
 
