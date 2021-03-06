@@ -126,7 +126,8 @@ nav ul {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    min-height: 70vh;
+    height: 70vh;
+    min-height: 40vh;
     position: relative;
     object-fit: cover;
     object-position: 50% 100%;
@@ -150,9 +151,10 @@ nav ul {
     position: absolute;
     z-index: 1;
     top: 20rem;
-    right: 20%;
+    left: 0;
+    right: 0;
+    margin: auto;
     color: rgb(255, 255, 255);
-    /* background-color: antiquewhite; */
     margin: 0 auto;
     text-align: center;
 }
