@@ -277,7 +277,7 @@ section {
 /*フッター
 -------------------------------------*/
 footer {
-    background-color: #f7f7f7;
+    background-color: rgb(52, 94, 122);
 }
 footer h4 {
     border-bottom: 3px solid #ccc;
@@ -290,7 +290,7 @@ footer h4 {
     padding: 1rem 0;
 }
 .copyright a {
-    color: rgb(109, 106, 106);
+    color: rgb(238, 232, 232);
     text-decoration: none;
 	display: inline;
 }
