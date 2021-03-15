@@ -1,5 +1,5 @@
 body {
-  font-family: "Gothic MB101 Light", "Montserrat","Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
+  font-family: "Sniglet", "Montserrat","Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
   font-size: 14px;
   line-height: 1.8;
   letter-spacing: .8px;
@@ -90,15 +90,7 @@ li {
 }
 
 .header-logo {
-  font-size: 20px;
-  font-weight: bold;
-  line-height: 1.2;
-  margin-right: 20px;
-  letter-spacing: .05em;
-}
-
-.header-logo a {
-  color: #333;
+  width: 14rem;
 }
 
 .header-nav-list {
@@ -150,6 +142,8 @@ li {
 
 .main-visual-inner {
   padding: 0 40px;
+  max-width: 1340px;
+  margin: 0 auto;
 }
 
 .main-visual-title {
@@ -158,6 +152,9 @@ li {
   line-height: 1.2;
   margin-bottom: 5px;
   letter-spacing: .1em;
+}
+.main-img{
+  width: 100%;
 }
 .main-visual-subtitle {
   font-size: 20px;
