@@ -171,6 +171,7 @@ li {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: -40px;
+  font-family: "Montserrat";
 }
 
 .works-item {
