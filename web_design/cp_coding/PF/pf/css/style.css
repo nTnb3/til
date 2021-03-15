@@ -191,6 +191,9 @@ li {
 
 .works-img img {
   border: 1px solid #e6e6e6;
+  height: 250px;
+  width: 90%;
+  object-fit: cover;
 }
 
 .works-name {
