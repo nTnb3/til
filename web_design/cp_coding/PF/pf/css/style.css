@@ -157,7 +157,7 @@ li {
   width: 100%;
 }
 .main-visual-subtitle {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
   line-height: 1;
   margin-bottom: 40px;
@@ -387,7 +387,7 @@ li {
   }
 
   .header-logo {
-    font-size: 15px;
+    width: 10rem;
     margin-right: 15px;
   }
 
@@ -396,7 +396,7 @@ li {
   }
 
   .header-nav-item a {
-    font-size: 10px;
+    font-size: 1rem;
   }
 
   .header-nav-item a:after {
@@ -416,7 +416,7 @@ li {
     font-size: 30px;
   }
   .main-visual-subtitle {
-    font-size: 16px;
+    font-size: 20px;
     margin-bottom: 20px;
   }
 
