@@ -230,6 +230,10 @@ li {
   margin-bottom: 30px;
 }
 
+.skill{
+  font-size: 16px;
+}
+
 /*--------------------------------
  Contact
 ---------------------------------*/
@@ -421,6 +425,9 @@ li {
     margin-bottom: 20px;
   }
 
+  .skill{
+    font-size: 15px;
+  }
   /* フッター */
   .footer {
     padding: 20px;
