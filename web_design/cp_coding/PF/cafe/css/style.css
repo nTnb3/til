@@ -268,4 +268,24 @@ article{
 .logo{
     font-size: 150%;
 }
+/*メインコンテンツ
+-------------------------------------*/
+.shop-describe{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+article{
+    width: 95%;
+    text-align : center;
+    margin: auto;
+    padding: 0 5%;
+}
+.shop-img1, .shop-img2{
+    width: 80%;
+    margin: 0 auto;
+}
+
+
 }
