@@ -397,6 +397,7 @@ li {
   }
   nav ul {
     flex-direction: column;
+    margin-top: 3rem;
   }
   .header li {
     padding-top: 0;
@@ -404,11 +405,14 @@ li {
   /* スマホ時はMENUボタンを表示 */
   #open,#close  {
       display: block;
-      width: 50px;
+      width: 30px;
       border: none;
       position: absolute;
       top: 20px;
       right: 12px;
+  }
+  .menu-icon{
+    color: #fff;
   }
   /* スマホ時はメニューを非表示 */
   #navi {
