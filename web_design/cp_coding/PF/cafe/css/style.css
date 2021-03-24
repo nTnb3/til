@@ -44,9 +44,6 @@ nav ul {
     list-style: none;
 	margin: 1rem 0 0 0;
 }
-nav li {
-	margin-left: 46px;
-}
 nav li a {
     text-decoration: none;
     text-align: center;
@@ -292,11 +289,13 @@ article{
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 2%;
 }
+.access-shop-logo{
+    font-size: 230%;
+}
 .shop-info{
     font-size: 1.5rem;
 }
 .top-bottom-bar{
     width: 80%;
 }
-
 }
