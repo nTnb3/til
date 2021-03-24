@@ -173,13 +173,13 @@ article{
 -------------------------------------*/
 .grid{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
     gap: 2%;
 }
 
 #menu{
     margin-top: 20px;
-    padding-bottom: 100px;
+    padding-bottom: 80px;
 }
 
 /*access
@@ -189,7 +189,7 @@ article{
 }
 
 .top-bottom-bar{
-    width: 45%;
+    width: 60%;
     border-bottom: 0.1rem solid #000;
     border-top: 0.1rem solid #000;
     margin: 0 auto;
@@ -291,6 +291,12 @@ article{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 2%;
+}
+.shop-info{
+    font-size: 1.5rem;
+}
+.top-bottom-bar{
+    width: 80%;
 }
 
 }
