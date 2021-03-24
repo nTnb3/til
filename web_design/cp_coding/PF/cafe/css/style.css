@@ -282,10 +282,15 @@ article{
     margin: auto;
     padding: 0 5%;
 }
-.shop-img1, .shop-img2{
+.shop-img{
     width: 80%;
     margin: 0 auto;
 }
 
+.grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 2%;
+}
 
 }
