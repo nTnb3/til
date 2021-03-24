@@ -44,6 +44,9 @@ nav ul {
     list-style: none;
 	margin: 1rem 0 0 0;
 }
+nav li {
+	margin-left: 46px;
+}
 nav li a {
     text-decoration: none;
     text-align: center;
@@ -297,5 +300,8 @@ article{
 }
 .top-bottom-bar{
     width: 80%;
+}
+nav li {
+	margin-left: 0;
 }
 }
