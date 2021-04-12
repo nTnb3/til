@@ -3,13 +3,22 @@ from requests_html import HTMLSession
 from bs4 import BeautifulSoup
 
 # Webページを取得して解析する
-# url = "https://jp.louisvuitton.com/jpn-jp/products/pochette-melanie-mm-monogram-empreinte-nvprod2020033v#M68707"
-url = "https://jp.louisvuitton.com/jpn-jp/products/vertical-trunk-pochette-monogram-reverse-canvas-nvprod1580032v"
+en_prod_url = "https://fr.louisvuitton.com/fra-fr/produits/pochette-trunk-verticale-monogram-reverse-canvas-nvprod1580032v"
+jp_prod_tmp_url = "https://jp.louisvuitton.com/jpn-jp/search/"
+
 
 # セッション開始
 session = HTMLSession()
-r = session.get(url)
+r = session.get(en_prod_url)
 
+# 外国語ページから型番をclassから取得
+product_no = r.html.find('.lv-product__details-sku')
+print(product_no)
+
+# 取得した型番から日本語版ページにアクセスする
+jp_prod_url = jp_prod_tmp_url + product_no[0].text
+
+r = session.get(jp_prod_url)
 
 # スクレイピング
 # 製品名をclassから取得
