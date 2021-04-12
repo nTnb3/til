@@ -22,8 +22,6 @@ size = r.html.find('.lv-product-panel-list__item-name')
 # size_table = r.html.find('td')
 # size_table = r.html.find('.lv-modal')
 
-print(size_table)
-
 
 print(" - 製品名:")
 for e in product_title:
