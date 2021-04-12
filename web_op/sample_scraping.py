@@ -3,13 +3,14 @@ from requests_html import HTMLSession
 from bs4 import BeautifulSoup
 
 # Webページを取得して解析する
-en_prod_url = "https://fr.louisvuitton.com/fra-fr/produits/pochette-trunk-verticale-monogram-reverse-canvas-nvprod1580032v"
+en_prod_url = "https://fr.louisvuitton.com/fra-fr/produits/sneaker-lv-trainer-nvprod2510017v#1A8KD6"
 jp_prod_tmp_url = "https://jp.louisvuitton.com/jpn-jp/search/"
 
 
 # セッション開始
 session = HTMLSession()
 r = session.get(en_prod_url)
+
 
 # 外国語ページから型番をclassから取得
 product_no = r.html.find('.lv-product__details-sku')
@@ -29,6 +30,8 @@ product_no = r.html.find('.lv-product__details-sku')
 read_more = r.html.find('#read-more')
 # サイズ一覧をclassから取得
 size = r.html.find('.lv-product-panel-list__item-name')
+# カラー一覧をclassから取得
+color = r.html.find('.lv-product-card__url')
 
 # size_table = r.html.find('td')
 # size_table = r.html.find('.lv-modal')
@@ -58,6 +61,6 @@ for e in size:
 
 print("\n")
 
-# print(" - サイズリスト：")
-# for e in size_table:
-#     print(e.text)
+print(" - カラー：")
+for e in color:
+    print(e.text)
