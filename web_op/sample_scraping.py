@@ -5,9 +5,11 @@ from bs4 import BeautifulSoup
 # Webページを取得して解析する
 # url = "https://jp.louisvuitton.com/jpn-jp/products/pochette-melanie-mm-monogram-empreinte-nvprod2020033v#M68707"
 url = "https://jp.louisvuitton.com/jpn-jp/products/placed-graphic-shirt-nvprod2550073v"
+
 # セッション開始
 session = HTMLSession()
 r = session.get(url)
+
 
 # スクレイピング
 # 製品名をclassから取得
@@ -17,7 +19,11 @@ read_more = r.html.find('#read-more')
 # サイズ一覧をclassから取得
 size = r.html.find('.lv-product-panel-list__item-name')
 
-# read-more = r.html.find('#read-more > p ')
+# size_table = r.html.find('td')
+# size_table = r.html.find('.lv-modal')
+
+print(size_table)
+
 
 print(" - 製品名:")
 for e in product_title:
@@ -34,3 +40,9 @@ print("\n")
 print(" - サイズ：")
 for e in size:
     print(e.text)
+
+print("\n")
+
+# print(" - サイズリスト：")
+# for e in size_table:
+#     print(e.text)
