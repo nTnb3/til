@@ -50,7 +50,6 @@ class LvPageDataCollector(object):
     def _fetch_size_table(self):
         # BeautifulSoupでhtmlをパース
         soup = BeautifulSoup(html, "html.parser")
-
         # table取得
         table = soup.findAll("table", {"class": "lv-size-guide-table__table"})[0]
         rows = table.findAll("tr")
