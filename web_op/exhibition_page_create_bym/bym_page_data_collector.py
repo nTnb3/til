@@ -1,3 +1,5 @@
+import os
+
 from bs4 import BeautifulSoup
 import requests
 from requests_html import HTMLSession
@@ -5,7 +7,7 @@ from selenium import webdriver
 
 
 class BymPageDataCollector(object):
-    def __init__(self, ref_bym_url, today, exhbt_no, save_root_path="./img"):
+    def __init__(self, ref_bym_url, today, exhbt_no, save_root_path="./img/"):
         self.ref_bym_url = ref_bym_url
         self._data_dict = {}
         self._ready_scraping()
@@ -47,14 +49,21 @@ class BymPageDataCollector(object):
         category_list = []
         for e in category:
             category_list.append(e.get_text())
-        return category_list
+        if len(category_list) != 0:
+            return category_list
+        else:
+            return []
 
     def _fetch_season_data(self):
         # シーズンをselectorから取得
         season = self.soup.select("#s_season > dd > a")
+        s_list = []
         for e in season:
-            s = e.get_text()
-        return s
+            s_list.append(e.get_text())
+        if len(s_list) != 0:
+            return s_list
+        else:
+            return []
 
     def _fetch_theme_data(self):
         # テーマをselectorから取得
@@ -62,7 +71,10 @@ class BymPageDataCollector(object):
         theme_list = []
         for e in theme:
             theme_list.append(e.get_text())
-        return theme_list
+        if len(theme_list) != 0:
+            return theme_list
+        else:
+            return []
 
     def _fetch_tag_data(self):
         # タグをselectorから取得
@@ -78,20 +90,26 @@ class BymPageDataCollector(object):
     def _fetch_buying_place_data(self):
         # 発送地をselectorから取得
         buying_country = self.soup.select("#s_buying_area > dd > img")
+        c_list = []
         for e in buying_country:
-            c = e.get_text()
+            c_list.append(e.attrs['alt'])
         buying_area = self.soup.select("#s_buying_area > dd > a")
+        a_list = []
         for e in buying_area:
-            a = e.get_text()
-        place_list = [c, a]
+            a_list.append(e.get_text())
+        place_list = [c_list[0], a_list[0]]
         return place_list
 
     def _fetch_price_data(self):
         # 価格
         price = self.soup.select("#abtest_display_pc")
+        p_list = []
         for e in price:
-            p = e.get_text()
-        return p
+            p_list.append(e.get_text())
+        if len(p_list) != 0:
+            return p_list[0]
+        else:
+            return []
 
     def _fetch_img(self, today, exhbt_no, save_root_path):
         # ブラウザ起動
@@ -125,6 +143,9 @@ class BymPageDataCollector(object):
                 print("none")
 
         save_dir_path = save_root_path + today + exhbt_no + '/'
+        if not os.path.exists(save_dir_path):
+            # ディレクトリが存在しない場合、ディレクトリを作成する
+            os.makedirs(save_dir_path)
         for i, image in enumerate(srcs):
             re = requests.get(image)
             i += 100
@@ -142,3 +163,19 @@ class BymPageDataCollector(object):
     def _close_browser(self):
         # ブラウザを閉じる
         self.driver.quit()
+
+
+if __name__ == '__main__':
+    import datetime
+    ref_bym_url_list = ["https://www.buyma.com/item/62455759/",
+                        "https://www.buyma.com/item/64033011/"]
+    for ref_bym_url in ref_bym_url_list:
+        dt_now = datetime.datetime.now()
+        today = dt_now.strftime('%m-%d')
+        exhbt_no = "①"
+        bym_collector = BymPageDataCollector(ref_bym_url, today, exhbt_no)
+
+        bym_extract_data = bym_collector.data_dict
+        for key, value in bym_extract_data.items():
+            print("{} : {}".format(key, value))
+        print("\n")
