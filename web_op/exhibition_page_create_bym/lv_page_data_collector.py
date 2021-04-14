@@ -14,6 +14,7 @@ class LvPageDataCollector(object):
         self._data_dict = {}
         self._ready_scraping(en_prod_url, jp_prod_tmp_url)
         self._fetch_data()
+        self._data_dict["is_enable"] = True
 
     def _ready_scraping(self, en_prod_url, jp_prod_tmp_url):
         # セッション開始
