@@ -6,6 +6,12 @@ from selenium import webdriver
 
 class LvPageDataCollector(object):
     def __init__(self, en_prod_url, is_bag, jp_prod_tmp_url="https://jp.louisvuitton.com/jpn-jp/search/"):
+        """
+
+        :param en_prod_url:
+        :param is_bag: バッグはサイズ、型番などの取得方法が特殊なので、bymページからバッグか否かのラベルを取得
+        :param jp_prod_tmp_url:
+        """
         self.is_bag = is_bag
         self._data_dict = {}
         self._ready_scraping(en_prod_url, jp_prod_tmp_url)
