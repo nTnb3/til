@@ -21,8 +21,10 @@ class BymPageDataCollector(object):
             print("not found ref bym page")
             for key in self._data_dict.keys():
                 self._data_dict[key] = "not found ref bym page"
+            self._data_dict["is_enable"] = False
         else:
             self._fetch_data(today, exhbt_no, save_root_path)
+            self._data_dict["is_enable"] = True
 
     def _init_data_dict(self):
         data_label = ["category",
