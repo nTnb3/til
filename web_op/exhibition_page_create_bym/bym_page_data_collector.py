@@ -5,6 +5,9 @@ import requests
 from requests_html import HTMLSession
 from selenium import webdriver
 
+# chromedriver_binaryのパスを通すimport
+import chromedriver_binary
+
 
 class BymPageDataCollector(object):
     def __init__(self, ref_bym_url, today, exhbt_no, save_root_path="./img/"):
@@ -12,7 +15,14 @@ class BymPageDataCollector(object):
         self._data_dict = {}
         self._ready_scraping()
         self._init_data_dict()
-        self._fetch_data(today, exhbt_no, save_root_path)
+
+        self.check_page = self._check_exhibition_page()
+        if self.check_page:
+            print("not found ref bym page")
+            for key in self._data_dict.keys():
+                self._data_dict[key] = "not found ref bym page"
+        else:
+            self._fetch_data(today, exhbt_no, save_root_path)
 
     def _init_data_dict(self):
         data_label = ["category",
@@ -164,11 +174,25 @@ class BymPageDataCollector(object):
         # ブラウザを閉じる
         self.driver.quit()
 
+    def _check_exhibition_page(self):
+        try:
+            check = self.soup.find_all(class_="notfoundSection_txt")
+            check_list = []
+            for e in check:
+                check_list.append(e.get_text())
+            if check_list[0] == "申し訳ございません。お探しの商品は既に出品がとりやめられました。":
+                return True
+            else:
+                return False
+        except:
+            return False
+
 
 if __name__ == '__main__':
     import datetime
-    ref_bym_url_list = ["https://www.buyma.com/item/62455759/",
-                        "https://www.buyma.com/item/64033011/"]
+    ref_bym_url_list = ["https://www.buyma.com/item/64033011/",
+                        "https://www.buyma.com/item/62821396/?ba_af=recommend_at_itemdetail"]
+
     for ref_bym_url in ref_bym_url_list:
         dt_now = datetime.datetime.now()
         today = dt_now.strftime('%m-%d')
