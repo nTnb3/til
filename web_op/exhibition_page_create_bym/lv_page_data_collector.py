@@ -5,24 +5,23 @@ from selenium import webdriver
 
 
 class LvPageDataCollector(object):
-    def __init__(self, en_prod_url, is_bag, jp_prod_tmp_url="https://jp.louisvuitton.com/jpn-jp/search/"):
+    def __init__(self, en_prod_url, jp_prod_tmp_url="https://jp.louisvuitton.com/jpn-jp/search/"):
         """
 
         :param en_prod_url:
-        :param is_bag: バッグはサイズ、型番などの取得方法が特殊なので、bymページからバッグか否かのラベルを取得
         :param jp_prod_tmp_url:
         """
-        self.is_bag = is_bag
         self._data_dict = {}
         self._ready_scraping(en_prod_url, jp_prod_tmp_url)
+        self._fetch_data()
 
     def _ready_scraping(self, en_prod_url, jp_prod_tmp_url):
         # セッション開始
         session = HTMLSession()
-        r = session.get(en_prod_url)
-        self.jp_prod_url = self._access_jp_page(r, session, jp_prod_tmp_url)
+        self.r = session.get(en_prod_url)
+        self.jp_prod_url = self._access_jp_page(session, jp_prod_tmp_url)
 
-    def _access_jp_page(self, r, sess, jp_prod_tmp_url):
+    def _access_jp_page(self, sess, jp_prod_tmp_url):
         # 外国語ページから型番をclassから取得
         product_code = self._fetch_prod_code()
         # 取得した型番から日本語版ページにアクセスする
@@ -45,7 +44,7 @@ class LvPageDataCollector(object):
     def data_dict(self):
         return self._data_dict
 
-    def _fetch_data(self, today, exhbt_no, save_root_path):
+    def _fetch_data(self):
         self._data_dict["prod_name"] = self._fetch_prod_name()
         self._data_dict["prod_code"] = self._fetch_prod_code()
         self._data_dict["prod_code_list"] = self._fetch_prod_code_list()
@@ -63,15 +62,9 @@ class LvPageDataCollector(object):
 
     def _fetch_prod_code_list(self):
         product_code_list = []
-        if self.is_bag:
-            product_codes_e = self.r.html.find('.lv-choice')
-            for e in product_codes_e:
-                if e.text != self._data_dict["prod_name"]:
-                    product_code_list.append(e.attrs["id"])
-        else:
-            product_codes_e = self.r.html.find('.lv-product-card__name')
-            for e in product_codes_e:
-                product_code_list.append(e.attrs["id"].split('-')[-1])
+        product_codes_e = self.r.html.find('.lv-product-card__name')
+        for e in product_codes_e:
+            product_code_list.append(e.attrs["id"].split('-')[-1])
         return product_code_list
 
     def _fetch_prod_spec(self):
@@ -117,7 +110,9 @@ class LvPageDataCollector(object):
             for row in rows:
                 csvRow = []
                 for cell in row.findAll(['td', 'th']):
-                    csvRow.append(cell.get_text())
+                    cell_str = cell.get_text()
+                    cell_str = cell_str.replace('\n', '')
+                    csvRow.append(cell_str)
                 table_list.append(csvRow)
         return table_list
 
@@ -130,3 +125,15 @@ class LvPageDataCollector(object):
     def _close_browser(self):
         # ブラウザを閉じる
         self.driver.quit()
+
+
+if __name__ == '__main__':
+    en_prod_url_list = ["https://jp.louisvuitton.com/jpn-jp/products/lv-trainer-sneaker-nvprod2510017v#1A8KD8"]
+    is_bag = True
+    for en_prod_url in en_prod_url_list:
+        lb_collector = LvPageDataCollector(en_prod_url)
+
+        lv_extract_data = lb_collector.data_dict
+        for key, value in lv_extract_data.items():
+            print("{} : {}".format(key, value))
+        print("\n")
