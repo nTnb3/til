@@ -176,7 +176,21 @@ class BymPageDataCollector(object):
         return save_dir_path
 
     def _fetch_color(self):
-        color = self.soup.select("#colorsize > div.colorsize_select.js-color-select > ul > li > span")
+        self._activate_browser()
+        is_color = True
+        try:
+            element = self.driver.find_element_by_css_selector('#colorsize > div.colorsize_select.js-color-select').click()
+        except:
+            is_table = False
+        # 文字コードをUTF-8に変換
+        html = self.driver.page_source.encode('utf-8')
+
+        # ブラウザを閉じる
+        self._close_browser()
+
+        # BeautifulSoupでhtmlをパース
+        soup = BeautifulSoup(html, "html.parser")
+        color = soup.select("#colorsize > div.colorsize_select.js-color-select > ul > li > span")
         count = 0
         color_list = []
         color_label_list = []
@@ -219,7 +233,7 @@ class BymPageDataCollector(object):
 
 if __name__ == '__main__':
     import datetime
-    ref_bym_url_list = ["https://www.buyma.com/item/64033011/",
+    ref_bym_url_list = ["https://www.buyma.com/item/52558726/",
                         "https://www.buyma.com/item/62821396/?ba_af=recommend_at_itemdetail"]
 
     for ref_bym_url in ref_bym_url_list:
