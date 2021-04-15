@@ -66,6 +66,8 @@ class LvPageDataCollector(object):
         product_codes_e = self.r.html.find('.lv-product-card__name')
         for e in product_codes_e:
             product_code_list.append(e.attrs["id"].split('-')[-1])
+        if len(product_code_list) == 0:
+            product_code_list.append(self._data_dict["prod_code"])
         return product_code_list
 
     def _fetch_prod_spec(self):
@@ -129,7 +131,7 @@ class LvPageDataCollector(object):
 
 
 if __name__ == '__main__':
-    en_prod_url_list = ["https://jp.louisvuitton.com/jpn-jp/products/lv-trainer-sneaker-nvprod2510017v#1A8KD8"]
+    en_prod_url_list = ["https://jp.louisvuitton.com/jpn-jp/products/cosmetic-pouch-monogram-empreinte-nvprod2780010v"]
     is_bag = True
     for en_prod_url in en_prod_url_list:
         lb_collector = LvPageDataCollector(en_prod_url)
