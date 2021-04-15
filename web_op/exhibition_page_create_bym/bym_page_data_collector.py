@@ -34,6 +34,7 @@ class BymPageDataCollector(object):
                       "tag",
                       "palace",
                       "price",
+                      "color",
                       "img_path"]
         for label in data_label:
             self._data_dict[label] = None
@@ -54,6 +55,7 @@ class BymPageDataCollector(object):
         self._data_dict["tag"] = self._fetch_tag_data()
         self._data_dict["palace"] = self._fetch_buying_place_data()
         self._data_dict["price"] = self._fetch_price_data()
+        self._data_dict["color"] = self._fetch_color()
         self._data_dict["img_path"] = self._fetch_img(today, exhbt_no, save_root_path)
 
     def _fetch_category_data(self):
@@ -172,6 +174,24 @@ class BymPageDataCollector(object):
             with open(save_path, 'wb') as f:
                 f.write(re.content)
         return save_dir_path
+
+    def _fetch_color(self):
+        color = self.soup.select("#colorsize > div.colorsize_select.js-color-select > ul > li > span")
+        count = 0
+        color_list = []
+        color_label_list = []
+        for e in color:
+            if count % 2 == 0:
+                extract_color = e.attrs
+                color_label = list(extract_color.values())[0][1]
+                color_label_list.append(color_label)
+            else:
+                c = e.get_text()
+                color_label_list.append(c)
+                color_list.append(color_label_list)
+                color_label_list = []
+            count += 1
+        return color_list
 
     def _activate_browser(self):
         # ブラウザを起動する
