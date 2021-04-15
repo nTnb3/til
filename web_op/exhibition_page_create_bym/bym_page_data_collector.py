@@ -1,4 +1,5 @@
 import os
+import shutil
 
 from bs4 import BeautifulSoup
 import requests
@@ -158,7 +159,13 @@ class BymPageDataCollector(object):
         if not os.path.exists(save_dir_path):
             # ディレクトリが存在しない場合、ディレクトリを作成する
             os.makedirs(save_dir_path)
+        is_copy_img = True
         for i, image in enumerate(srcs):
+            if i >= 1:
+                if is_copy_img:
+                    shutil.copyfile("./img/img0.png", save_dir_path+"101.jpg")
+                    is_copy_img = False
+                i += 1
             re = requests.get(image)
             i += 100
             save_path = save_dir_path + f'{i}.' + image.split('.')[-1]
