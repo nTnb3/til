@@ -49,4 +49,7 @@ DATA = """
 沖縄県
 """
 
-prefecture = re.findall(r'(\w+)\n',DATA)
+prefecture_ja = re.findall(r'(\w+)\n',DATA)
+
+prefecture_ep = ["フランス", "イタリア", "ドイツ", "ベルギー"]
+
