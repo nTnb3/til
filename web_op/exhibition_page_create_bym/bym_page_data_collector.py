@@ -157,7 +157,7 @@ class BymPageDataCollector(object):
             else:
                 print("none")
 
-        save_dir_path = save_root_path + today + exhbt_no + '/'
+        save_dir_path = save_root_path + today + '_' + exhbt_no + '/'
         if not os.path.exists(save_dir_path):
             # ディレクトリが存在しない場合、ディレクトリを作成する
             os.makedirs(save_dir_path)
@@ -233,7 +233,7 @@ class BymPageDataCollector(object):
 
 if __name__ == '__main__':
     import datetime
-    ref_bym_url_list = ["https://www.buyma.com/item/52558726/",
+    ref_bym_url_list = ["https://www.buyma.com/item/58513475/?ba_af=recommend_at_itemdetail",
                         "https://www.buyma.com/item/62821396/?ba_af=recommend_at_itemdetail"]
 
     for ref_bym_url in ref_bym_url_list:
