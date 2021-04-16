@@ -13,8 +13,16 @@ class LvPageDataCollector(object):
         """
         self._data_dict = {}
         self._ready_scraping(en_prod_url, jp_prod_tmp_url)
-        self._fetch_data()
-        self._data_dict["is_enable"] = True
+        self.check_page = self._check_lv_page()
+
+        if self.check_page:
+            print("not found lv page")
+            for key in self._data_dict.keys():
+                self._data_dict[key] = "not found lv page"
+            self._data_dict["is_enable"] = False
+        else:
+            self._fetch_data()
+            self._data_dict["is_enable"] = True
 
     def _ready_scraping(self, en_prod_url, jp_prod_tmp_url):
         # セッション開始
@@ -130,6 +138,19 @@ class LvPageDataCollector(object):
     def _close_browser(self):
         # ブラウザを閉じる
         self.driver.quit()
+
+    def _check_lv_page(self):
+        try:
+            check = self.r.html.find('.search-no-result-title')
+            check_list = []
+            for e in check:
+                check_list.append(e.get_text())
+            if "該当項目が見つかりません。検索キーワード：" in check_list[0]:
+                return True
+            else:
+                return False
+        except:
+            return False
 
 
 if __name__ == '__main__':
