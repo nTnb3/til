@@ -72,7 +72,9 @@ class LvPageDataCollector(object):
 
     def _fetch_prod_spec(self):
         prod_spec = self.r.html.find('#read-more')
-        return prod_spec[0].text
+        proc_space_text = prod_spec[0].text
+        proc_space_text = proc_space_text.replace('･', '・')
+        return proc_space_text
 
     def _fetch_size_list(self):
         size = self.r.html.find('.lv-product-panel-list__item-name')
@@ -131,7 +133,7 @@ class LvPageDataCollector(object):
 
 
 if __name__ == '__main__':
-    en_prod_url_list = ["https://jp.louisvuitton.com/jpn-jp/products/cosmetic-pouch-monogram-empreinte-nvprod2780010v"]
+    en_prod_url_list = ["https://uk.louisvuitton.com/eng-gb/products/keepall-bandouliere-45-monogram-macassar-000206"]
     is_bag = True
     for en_prod_url in en_prod_url_list:
         lb_collector = LvPageDataCollector(en_prod_url)
