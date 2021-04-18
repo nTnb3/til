@@ -742,7 +742,9 @@ if __name__ == '__main__':
     conter = 7
     dt_now = datetime.datetime.now()
     now = dt_now.strftime('%Y%m%d-%H%M')
-    log_path = "C:\\Users\\ntagu\\workspace\\til\\web_op\\exhibition_page_create_bym\\" + now + ".log"
+
+    log_dir = "C:\\Users\\ntagu\\workspace\\til\\web_op\\exhibition_page_create_bym\\log\\"
+    log_path = log_dir + now + ".log"
     write_mode = "w"
     for url in url_lists:
         exhbt_no = str(conter)
@@ -755,6 +757,10 @@ if __name__ == '__main__':
                                                  login_pass=log_pass,
                                                  )
         bym_dict, lv_dict = bym_collector.extract_data_dict()
+
+        if not os.path.exists(log_dir):
+            # ディレクトリが存在しない場合、ディレクトリを作成する
+            os.makedirs(log_dir)
         with open(log_path, write_mode, encoding="utf-8") as f:
             print(exhbt_no, "===============\n", file=f)
             for key, value in bym_dict.items():
