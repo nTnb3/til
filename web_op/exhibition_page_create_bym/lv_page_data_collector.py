@@ -109,28 +109,39 @@ class LvPageDataCollector(object):
             element = self.driver.find_element_by_class_name('lv-product-size-guide__button').click()
         except:
             is_table = False
-
         # 文字コードをUTF-8に変換
         html = self.driver.page_source.encode('utf-8')
-
         # ブラウザを閉じる
         self._close_browser()
 
-        table_list = []
+        table_str = ""
         if is_table:
             # BeautifulSoupでhtmlをパース
             soup = BeautifulSoup(html, "html.parser")
             # table取得
             table = soup.findAll("table", {"class": "lv-size-guide-table__table"})[0]
             rows = table.findAll("tr")
+            row_count = 0
+            header = 0
             for row in rows:
-                csvRow = []
-                for cell in row.findAll(['td', 'th']):
-                    cell_str = cell.get_text()
-                    cell_str = cell_str.replace('\n', '')
-                    csvRow.append(cell_str)
-                table_list.append(csvRow)
-        return table_list
+                csvRow = ""
+                if row_count == header:
+                    for cell in row.findAll(['td', 'th']):
+                        cell_str = cell.get_text()
+                        cell_str = cell_str.replace('\n', '')
+                        cell_str = cell_str.replace(' ', '')
+                        cell_str += ' / '
+                        csvRow += cell_str
+                else:
+                    for cell in row.findAll(['td', 'th']):
+                        cell_str = cell.get_text()
+                        cell_str += ' / '
+                        csvRow += cell_str
+                csvRow = csvRow[:-3]
+                csvRow += "\n"
+                table_str += csvRow
+                row_count += 1
+        return table_str
 
     def _activate_browser(self):
         # ブラウザを起動する
@@ -157,7 +168,7 @@ class LvPageDataCollector(object):
 
 
 if __name__ == '__main__':
-    en_prod_url_list = ["https://uk.louisvuitton.com/eng-gb/products/keepall-bandouliere-45-monogram-macassar-000206"]
+    en_prod_url_list = ["https://en.louisvuitton.com/eng-nl/products/luxembourg-trainer-nvprod1270499v"]
     is_bag = True
     for en_prod_url in en_prod_url_list:
         lb_collector = LvPageDataCollector(en_prod_url)
