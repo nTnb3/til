@@ -168,7 +168,7 @@ class BymExhibitionPageCreater(object):
     def _write_prod_comment(self):
         t = Template(comment)
         if len(self.lv_extract_data["size_table"]) > 0:
-            size_table = self.lv_extract_data["size_table"][0]
+            size_table = self.lv_extract_data["size_table"]
         else:
             size_table = ""
         inserted_comment = t.substitute(prod_spec=self.lv_extract_data["prod_spec"], size_table=size_table)
