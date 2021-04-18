@@ -167,15 +167,21 @@ class BymExhibitionPageCreater(object):
 
     def _write_prod_comment(self):
         inserted_comment = ""
-        for s in comment:
-            if ("prod_spec" in s) or ("size_table" in s):
-                t = Template(s)
-                if len(self.lv_extract_data["size_table"]) > 0:
-                    size_table = self.lv_extract_data["size_table"][0]
-                else:
-                    size_table = ""
-                s = t.substitute(prod_spec=self.lv_extract_data["prod_spec"], size_table=size_table)
-            inserted_comment += s
+        # for s in comment:
+        #     if ("prod_spec" in s) or ("size_table" in s):
+        #         t = Template(s)
+        #         if len(self.lv_extract_data["size_table"]) > 0:
+        #             size_table = self.lv_extract_data["size_table"][0]
+        #         else:
+        #             size_table = ""
+        #         s = t.substitute(prod_spec=self.lv_extract_data["prod_spec"], size_table=size_table)
+        #     inserted_comment += s
+        t = Template(comment)
+        if len(self.lv_extract_data["size_table"]) > 0:
+            size_table = self.lv_extract_data["size_table"][0]
+        else:
+            size_table = ""
+        inserted_comment = t.substitute(prod_spec=self.lv_extract_data["prod_spec"], size_table=size_table)
         prod_comm = self.driver.find_element_by_xpath('/html/body/div[3]/div[3]/div[1]/div/div[1]/div/div/div/div[2]/form/div[2]/div[2]/div/div[2]/div/div/div[1]/textarea')
         prod_comm.send_keys(inserted_comment)
         self._scroll_display(prod_comm, 100)
@@ -321,7 +327,6 @@ class BymExhibitionPageCreater(object):
         for div_tag in tag_list_element:
             if div_tag.text in check_tag_list:
                 # その国を選択する
-                # div_tag.click()
                 self.driver.execute_script("arguments[0].click();", div_tag)
                 tag_count += 1
                 if tag_count == check_tag_len:
