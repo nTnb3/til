@@ -88,7 +88,10 @@ class LvPageDataCollector(object):
         size = self.r.html.find('.lv-product-panel-list__item-name')
         size_list = []
         for e in size:
-            size_list.append(e.text)
+            text = e.text
+            if text[0] == "0":
+                text = text[1:]
+            size_list.append(text)
         return size_list
 
     def _fetch_color_list(self):
