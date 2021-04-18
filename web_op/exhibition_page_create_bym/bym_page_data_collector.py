@@ -9,6 +9,7 @@ from selenium import webdriver
 # chromedriver_binaryのパスを通すimport
 import chromedriver_binary
 
+from util import convert_rgb
 
 class BymPageDataCollector(object):
     def __init__(self, ref_bym_url, today, exhbt_no, save_root_path="./img/"):
@@ -162,17 +163,19 @@ class BymPageDataCollector(object):
             # ディレクトリが存在しない場合、ディレクトリを作成する
             os.makedirs(save_dir_path)
         is_copy_img = True
+        num = 0
         for i, image in enumerate(srcs):
             if i >= 1:
                 if is_copy_img:
                     shutil.copyfile("./img/img0.png", save_dir_path+"101.jpg")
+                    convert_rgb(save_dir_path+"101.jpg")
+                    num += 1
                     is_copy_img = False
-                i += 1
             re = requests.get(image)
-            i += 100
-            save_path = save_dir_path + f'{i}.' + image.split('.')[-1]
+            save_path = save_dir_path + f'{num+100}.' + image.split('.')[-1]
             with open(save_path, 'wb') as f:
                 f.write(re.content)
+            num += 1
         return save_dir_path
 
     def _fetch_color(self):
