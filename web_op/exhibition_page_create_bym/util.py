@@ -10,3 +10,7 @@ def resize_img(img_path, img_size_tpl=(700, 700)):
 
     img_resize = img.resize(img_size_tpl)
     img_resize.save(img_path)
+
+
+def convert_rgb(img_path):
+    Image.open(img_path).convert('RGB').save(img_path)
