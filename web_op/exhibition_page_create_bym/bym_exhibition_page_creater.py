@@ -129,8 +129,8 @@ class BymExhibitionPageCreater(object):
         addres.click()
 
         dialog_dir = window.children()[43]
-
         dialog_dir.type_keys(self.bym_extract_data["img_path"]+'{ENTER}',with_spaces=True)
+        time.sleep(1)
 
         # テキストボックス(ファイル名)にPATHを入力
         tb = window[u"ファイル名(&N):"]
@@ -166,16 +166,6 @@ class BymExhibitionPageCreater(object):
         self._scroll_display(prod_name_element, 50)
 
     def _write_prod_comment(self):
-        inserted_comment = ""
-        # for s in comment:
-        #     if ("prod_spec" in s) or ("size_table" in s):
-        #         t = Template(s)
-        #         if len(self.lv_extract_data["size_table"]) > 0:
-        #             size_table = self.lv_extract_data["size_table"][0]
-        #         else:
-        #             size_table = ""
-        #         s = t.substitute(prod_spec=self.lv_extract_data["prod_spec"], size_table=size_table)
-        #     inserted_comment += s
         t = Template(comment)
         if len(self.lv_extract_data["size_table"]) > 0:
             size_table = self.lv_extract_data["size_table"][0]
@@ -415,10 +405,30 @@ class BymExhibitionPageCreater(object):
             size_num = 0
             for size in size_list:
                 size_num += 1
+
+                # サイズ名
                 size_path = "/html/body/div[3]/div[3]/div[1]/div/div[1]/div/div/div/div[2]/form/div[4]/div[1]/div/div[2]/div/div/div[1]/div/div[3]/div/div/div[2]/div/div/div[2]/table/tbody/tr[" + str(
                     size_num) + "]/td[2]/div/div/div/input"
                 size_name = self.driver.find_element_by_xpath(size_path)
                 size_name.send_keys(size)
+
+                # 参考日本サイズ
+                size_val = self.driver.find_element_by_xpath(
+                    "/html/body/div[3]/div[3]/div[1]/div/div[1]/div/div/div/div[2]/form/div[4]/div[1]/div/div[2]/div/div/div[1]/div/div[3]/div/div/div[2]/div/div/div[2]/table/tbody/tr[" + str(
+                        size_num) + "]/td[3]/div/div/span[1]/div[1]")
+
+                # プルダウンをクリックし選択肢一覧を表示させる
+                actions = ActionChains(self.driver)
+                actions.move_to_element(size_val)
+                actions.click()
+                actions.perform()
+                time.sleep(1)
+
+                size_element = self.driver.execute_script('return document.getElementsByClassName("Select-option")')
+                for div_tag in size_element:
+                    if div_tag.text == "指定なし":
+                        div_tag.click()
+                        break
 
                 if size_num < size_len:
                     self._scroll_display(size_name, 30)
@@ -730,18 +740,8 @@ if __name__ == '__main__':
     log_pass = "n0313123",
 
     url_lists = [
-                ["https://www.buyma.com/item/64556586/?af=4018",
-                "https://en.louisvuitton.com/eng-nl/products/monogram-essential-bucket-hat-nvprod2550155v#M76586", "", ""],
-                #  ["https://www.buyma.com/item/65579078/?ba_af=recommend_at_itemdetail",
-                # "https://uk.louisvuitton.com/eng-gb/products/amazone-slingbag-monogram-other-nvprod2380063v", "", ""],
-                # ["https://www.buyma.com/item/66463914/",
-                # "https://uk.louisvuitton.com/eng-gb/products/monogram-watercolour-skater-hat-nvprod2810044v", "", ""],
-                # ["https://www.buyma.com/item/62784749/",
-                # "https://en.louisvuitton.com/eng-nl/products/monogram-essential-bucket-hat-nvprod2550155v#M76586", "", ""],
-                # ["https://www.buyma.com/item/58513475/?ba_af=recommend_at_itemdetail",
-                # "https://uk.louisvuitton.com/eng-gb/products/keepall-bandouliere-45-monogram-macassar-000206", "", ""],
-                # ["https://www.buyma.com/item/65825055/?ba_af=recommend_at_itemdetail",
-                # "https://en.louisvuitton.com/eng-nl/products/onthego-gm-tote-bag-nvprod2800059v", "", ""],
+                ["https://www.buyma.com/item/66631139/",
+                "https://en.louisvuitton.com/eng-nl/products/luxembourg-trainer-nvprod1270499v", "", ""],
                 ]
 
     conter = 7
