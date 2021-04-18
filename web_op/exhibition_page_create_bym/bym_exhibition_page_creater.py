@@ -13,7 +13,7 @@ from string import Template
 from bym_page_data_collector import BymPageDataCollector
 from color_correspondence import color_correspondence_dict
 from lv_page_data_collector import LvPageDataCollector
-from create_ja_area_list import prefecture_ja, prefecture_ep
+from country_area_list import prefecture_ja, prefecture_ep
 from prod_comment_template import comment
 from util import merge_dict, resize_img
 
