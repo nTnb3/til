@@ -29,6 +29,7 @@ class BymExhibitionPageCreater(object):
                  country="",
                  img_save_root_path="C:\\Users\\ntagu\\workspace\\til\\web_op\\exhibition_page_create_bym\\img\\"):
         self.exhbit_no = exhbt_no
+        self.exhibition_url = exhibition_url
         self.login_id = login_id
         self.login_pass = login_pass
         self.title_msg = title_msg
@@ -50,9 +51,12 @@ class BymExhibitionPageCreater(object):
             self.bym_extract_data["palace"][0] = country
 
         if self.bym_extract_data["is_enable"] and self.lv_extract_data["is_enable"]:
-            self._activate_browser(exhibition_url)
-            self.create_exhibit_page()
-            # self._close_browser()
+            self.create_exhibit_page_ok = True
+
+    def create_exhibit_page(self):
+        self._activate_browser(self.exhibition_url)
+        self._write_exhibit_page()
+        # self._close_browser()
 
     def _activate_browser(self, exhibition_url, zoom_rate="60"):
         # ブラウザを起動する
@@ -65,8 +69,8 @@ class BymExhibitionPageCreater(object):
         # ブラウザを閉じる
         self.driver.quit()
 
-    def create_exhibit_page(self):
-        self._login_bympage()
+    def _write_exhibit_page(self):
+        self._login_bym_page()
         self._upload_img()
         self._write_prod_name()
         self._write_prod_comment()
@@ -86,9 +90,9 @@ class BymExhibitionPageCreater(object):
         self._write_send_area()
         self._write_price()
         self._write_memo()
-        self._comp_btn()
+        # self._comp_btn()
 
-    def _login_bympage(self):
+    def _login_bym_page(self):
         # id入力フォームをアクティブに
         login = self.driver.find_element_by_id('txtLoginId')
         # id入力し、Enterキーを押下
@@ -723,9 +727,21 @@ class BymExhibitionPageCreater(object):
         time.sleep(3)
         comp_btn_element.click()
 
-
     def extract_data_dict(self):
         return self.bym_extract_data, self.lv_extract_data
+
+
+def create_log_file(log_dir, log_path, write_mode, bym_dict, lv_dict):
+    if not os.path.exists(log_dir):
+        # ディレクトリが存在しない場合、ディレクトリを作成する
+        os.makedirs(log_dir)
+    with open(log_path, write_mode, encoding="utf-8") as f:
+        print(exhbt_no, "===============\n", file=f)
+        for key, value in bym_dict.items():
+            print("{} : {}".format(key, value), file=f)
+        for key, value in lv_dict.items():
+            print("{} : {}".format(key, value), file=f)
+        print("\n", file=f)
 
 
 if __name__ == '__main__':
@@ -734,10 +750,10 @@ if __name__ == '__main__':
     MESSAGE_INDEX = 2
     COUNTRY_INDEX = 3
 
-    # log_id = "reimero2525@gmail.com"
-    # log_pass = "2525reina"
-    log_id = "tanabe.naoto3@gmail.com",
-    log_pass = "n0313123",
+    log_id = "reimero2525@gmail.com"
+    log_pass = "2525reina"
+    # log_id = "tanabe.naoto3@gmail.com",
+    # log_pass = "n0313123",
 
     url_lists = [
                 ["https://www.buyma.com/item/66631139/",
@@ -753,26 +769,24 @@ if __name__ == '__main__':
     write_mode = "w"
     for url in url_lists:
         exhbt_no = str(conter)
-        bym_collector = BymExhibitionPageCreater(ref_bym_url=url[BYM_INDEX],
-                                                 lv_url=url[LV_INDEX],
-                                                 exhbt_no=exhbt_no,
-                                                 title_msg=url[MESSAGE_INDEX],
-                                                 country=url[COUNTRY_INDEX],
-                                                 login_id=log_id,
-                                                 login_pass=log_pass,
-                                                 )
-        bym_dict, lv_dict = bym_collector.extract_data_dict()
+        bym_page_creater = BymExhibitionPageCreater(ref_bym_url=url[BYM_INDEX],
+                                                    lv_url=url[LV_INDEX],
+                                                    exhbt_no=exhbt_no,
+                                                    title_msg=url[MESSAGE_INDEX],
+                                                    country=url[COUNTRY_INDEX],
+                                                    login_id=log_id,
+                                                    login_pass=log_pass)
+        # 抽出データの取得
+        bym_dict, lv_dict = bym_page_creater.extract_data_dict()
 
-        if not os.path.exists(log_dir):
-            # ディレクトリが存在しない場合、ディレクトリを作成する
-            os.makedirs(log_dir)
-        with open(log_path, write_mode, encoding="utf-8") as f:
-            print(exhbt_no, "===============\n", file=f)
-            for key, value in bym_dict.items():
-                print("{} : {}".format(key, value), file=f)
-            for key, value in lv_dict.items():
-                print("{} : {}".format(key, value), file=f)
-            print("\n", file=f)
-            write_mode = "a"
+        # 抽出データをログファイルの出力
+        create_log_file(log_dir, log_path, write_mode, bym_dict, lv_dict)
+        write_mode = "a"
+
+        # 抽出データの取得ができているかチェック
+        if bym_page_creater.create_exhibit_page_ok:
+            # 抽出データをもとに出品ページ作成
+            bym_page_creater.create_exhibit_page()
+
         conter +=1
         print("exhbt_no:", exhbt_no, "\n")
