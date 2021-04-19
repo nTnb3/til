@@ -6,7 +6,7 @@ from selenium import webdriver
 import chromedriver_binary
 
 
-class LvPageDataCollector(object):
+class ChnlPageDataCollector(object):
     def __init__(self, prod_url, prod_code_list):
         """
 
@@ -58,18 +58,18 @@ class LvPageDataCollector(object):
         # self._data_dict["color_list"] = self._fetch_color_list()
 
     def _fetch_prod_name(self):
-        time.sleep(1)
+        time.sleep(2)
         prod_name = self.r.html.find('.fs-productsheet__title')
         return prod_name[0].text
 
     def _fetch_prod_code(self):
-        time.sleep(1)
+        time.sleep(2)
         product_code = self.r.html.find('.fs-productsheet__ref')
         product_code_str = product_code[0].text.split(':')[-1]
         return product_code_str
 
     def _fetch_prod_code_list(self):
-        time.sleep(1)
+        time.sleep(2)
         # 入力リストから取得
         product_code_list = []
         product_codes_e = self.r.html.find('.slick-list')
@@ -82,14 +82,14 @@ class LvPageDataCollector(object):
         return product_code_list
 
     def _fetch_prod_spec(self):
-        time.sleep(1)
+        time.sleep(2)
         prod_spec = self.r.html.find('.fs-size__label')
         proc_space_text = prod_spec[0].text
         return proc_space_text
 
     def _fetch_size_list(self):
         # 洋服のサイズ表が見つからないので一旦スキップ
-        time.sleep(1)
+        time.sleep(2)
         size = self.r.html.find('.lv-product-panel-list__item-name')
         size_list = []
         for e in size:
@@ -101,7 +101,7 @@ class LvPageDataCollector(object):
 
     def _fetch_color_list(self):
         # buyma参考ページから取得
-        time.sleep(1)
+        time.sleep(2)
         self._activate_browser()
         color_e = self.driver.execute_script('return document.querySelector("#main-wrapper > section > div > div.fs-productsheet__main.fs-price__mentioncontainer.fs-price__mentioncontainer--hasPrice > div.fs-productsheet__details > div.fs-productsheet__details-content > div.slick-loaded > div.fs-productsheet__section.fs-productsheet__materials-section > div > div > ul > div > div")')
         # color_e = self.driver.execute_script('return document.getElementsByClassName("slick-track")')
@@ -183,9 +183,9 @@ if __name__ == '__main__':
     prod_input_list = [["https://www.chanel.com/ja_JP/fashion/p/slg/ap2033b05060/ap2033b0506094305/phone-airpods-case-with-chain-grained-calfskin-laquered-goldtone-metal-black.html", ["AP2033 B05060 94305", "AP2033 B05060 NB354"]]]
     is_bag = True
     for prod_input in prod_input_list:
-        lb_collector = LvPageDataCollector(prod_url=prod_input[URL], prod_code_list=prod_input[PROD_CODE_LIST])
+        chnl_collector = ChnlPageDataCollector(prod_url=prod_input[URL], prod_code_list=prod_input[PROD_CODE_LIST])
 
-        lv_extract_data = lb_collector.data_dict
+        lv_extract_data = chnl_collector.data_dict
         for key, value in lv_extract_data.items():
             print("{} : {}".format(key, value))
         print("\n")
