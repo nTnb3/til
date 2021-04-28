@@ -38,8 +38,8 @@ driver.get(bym_url)
 
 # 以下、web操作
 # ログイン
-login_id = "tanabe.naoto3@gmail.com"
-login_password = "n0313123"
+login_id = ""
+login_password = ""
 # id入力フォームをアクティブに
 login = driver.find_element_by_id('txtLoginId')
 # id入力し、Enterキーを押下
@@ -79,7 +79,7 @@ addres = window.children()[39]
 addres.click()
 
 dialog_dir = window.children()[43]
-photo_folder = "C:\\Users\\ntagu\\workspace\\til\\web_op\\exhibition_page_create_bym\\img\\04-15①"
+photo_folder = ""
 
 dialog_dir.type_keys(photo_folder+'{ENTER}',with_spaces=True)
 
