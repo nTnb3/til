@@ -766,18 +766,8 @@ if __name__ == '__main__':
     COUNTRY_INDEX = 5
 
 
-    log_id = "reimero2525@gmail.com"
-    log_pass = "2525reina"
-    # log_id = "tanabe.naoto3@gmail.com",
-    # log_pass = "n0313123",
-
-    # url_lists = [
-    #             ["https://www.buyma.com/item/64393389/",
-    #              "https://www.chanel.com/ja_JP/fashion/p/slg/ap1991y04059/ap1991y04059c3906/classic-small-wallet-lambskin-goldtone-metal-black.html",
-    #              "", "",
-    #              ["AP1991 Y04059 C3906"]],
-    #             ]
-
+    log_id = ""
+    log_pass = ""
 
     with open('input.csv', encoding="utf-8") as f:
         reader = csv.reader(f)
