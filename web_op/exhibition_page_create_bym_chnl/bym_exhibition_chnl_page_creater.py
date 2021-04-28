@@ -1,3 +1,4 @@
+import csv
 import datetime
 import glob
 import os
@@ -10,12 +11,13 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from string import Template
 
-from .bym_page_data_collector import BymPageDataCollector
-from .color_correspondence import color_correspondence_dict
-from .chnl_page_data_collector import ChnlPageDataCollector
-from .country_area_list import prefecture_ja, prefecture_ep
-from .prod_comment_template import comment
-from .util import merge_dict, resize_img
+from bym_page_data_collector import BymPageDataCollector
+from color_correspondence import color_correspondence_dict
+from chnl_page_data_collector import ChnlPageDataCollector
+from country_area_list import prefecture_ja, prefecture_ep
+from prod_comment_template import comment
+from util import merge_dict, resize_img
+
 
 class BymExhibitionPageCreater(object):
     def __init__(self,
@@ -28,19 +30,20 @@ class BymExhibitionPageCreater(object):
                  login_pass="n0313123",
                  title_msg="【大人気】",
                  country="",
-                 img_save_root_path="C:\\Users\\ntagu\\workspace\\til\\web_op\\exhibition_page_create_bym\\img\\"):
+                 img_save_root_path="C:\\Users\\ntagu\\workspace\\til\\web_op\\exhibition_page_create_bym_chnl\\img\\"):
         self.exhbit_no = exhbt_no
         self.exhibition_url = exhibition_url
         self.login_id = login_id
         self.login_pass = login_pass
         self.title_msg = title_msg
-        self.maker_name = "ルイヴィトン"
+        self.maker_name = "シャネル"
         self.scroll_start = 0
         self.scroll_goal = 1000
+        self.create_exhibit_page_ok = False
 
         dt_now = datetime.datetime.now()
         today = dt_now.strftime('%m-%d')
-        self.bym_data_collector = BymPageDataCollector(ref_bym_url, today, exhbt_no, img_save_root_path)
+        self.bym_data_collector = BymPageDataCollector(ref_bym_url, today, exhbt_no, img_save_root_path, )
         self.lv_data_collector = ChnlPageDataCollector(chnl_url, prod_code_list)
 
         self.bym_extract_data = self.bym_data_collector.data_dict
@@ -48,6 +51,9 @@ class BymExhibitionPageCreater(object):
 
         if self.title_msg == "":
             self.title_msg = "【大人気】"
+        else:
+            self.title_msg = "【" + self.title_msg + "】"
+
         if country != "":
             self.bym_extract_data["palace"][0] = country
 
@@ -91,7 +97,7 @@ class BymExhibitionPageCreater(object):
         self._write_send_area()
         self._write_price()
         self._write_memo()
-        # self._comp_btn()
+        self._comp_btn()
 
     def _login_bym_page(self):
         # id入力フォームをアクティブに
@@ -144,7 +150,7 @@ class BymExhibitionPageCreater(object):
         for img_path in img_path_list:
             img_list.append(os.path.split(img_path)[1])
             #画像のリサイズ
-            resize_img(img_path=img_path, img_size_tpl=(700, 700))
+            # resize_img(img_path=img_path, img_size_tpl=(700, 700))
         if tb.is_enabled():
             tb.click()
             edit = window.Edit4
@@ -172,11 +178,13 @@ class BymExhibitionPageCreater(object):
 
     def _write_prod_comment(self):
         t = Template(comment)
-        if len(self.lv_extract_data["size_table"]) > 0:
-            size_table = self.lv_extract_data["size_table"]
+        if len(self.lv_extract_data["prod_spec"]) > 0:
+            prod_spec_title = "【製品仕様】"
+            prod_spec = self.lv_extract_data["prod_spec"]
         else:
-            size_table = ""
-        inserted_comment = t.substitute(prod_spec=self.lv_extract_data["prod_spec"], size_table=size_table)
+            prod_spec_title = ""
+            prod_spec = ""
+        inserted_comment = t.substitute(prod_spec=prod_spec, prod_spec_title=prod_spec_title)
         prod_comm = self.driver.find_element_by_xpath('/html/body/div[3]/div[3]/div[1]/div/div[1]/div/div/div/div[2]/form/div[2]/div[2]/div/div[2]/div/div/div[1]/textarea')
         prod_comm.send_keys(inserted_comment)
         self._scroll_display(prod_comm, 100)
@@ -191,7 +199,7 @@ class BymExhibitionPageCreater(object):
         actions.move_to_element(category1)
         actions.click()
         actions.perform()
-        time.sleep(2)
+        time.sleep(3)
 
         category1_choice = self.bym_extract_data["category"][0]
         category1_element = self.driver.execute_script('return document.getElementsByClassName("Select-option")')
@@ -252,7 +260,7 @@ class BymExhibitionPageCreater(object):
 
         brand_name = self.driver.find_element_by_xpath(
             '/html/body/div[3]/div[3]/div[1]/div/div[1]/div/div/div/div[2]/form/div[3]/div[2]/div/div[2]/div/div/div/div[1]/div/div/div/div/div/div/div/input')
-        brand_name.send_keys("Louis Vuitton")
+        brand_name.send_keys("シャネル")
         time.sleep(1)
 
         brand_choice = self.driver.find_element_by_xpath(
@@ -321,9 +329,12 @@ class BymExhibitionPageCreater(object):
         tag_count = 0
         for div_tag in tag_list_element:
             if div_tag.text in check_tag_list:
+                tag_count += 1
+                if div_tag.text == '手元に在庫あり(即発送可能)':
+                    break
                 # その国を選択する
                 self.driver.execute_script("arguments[0].click();", div_tag)
-                tag_count += 1
+                time.sleep(1)
                 if tag_count == check_tag_len:
                     break
 
@@ -609,7 +620,7 @@ class BymExhibitionPageCreater(object):
     def _write_shop(self):
         shop_element = self.driver.find_element_by_xpath(
             "/html/body/div[3]/div[3]/div[1]/div/div[1]/div/div/div/div[2]/form/div[7]/div[3]/div/div[2]/div/div/div/div/div[1]/input")
-        shop_element.send_keys("Louis Vuitton 正規店")
+        shop_element.send_keys("CHANEL 正規店")
 
         loc = shop_element.location
         self.scroll_start = loc["y"]
@@ -725,14 +736,15 @@ class BymExhibitionPageCreater(object):
     def _comp_btn(self):
         comp_btn_element = self.driver.find_element_by_xpath(
             "/html/body/div[3]/div[3]/div[1]/div/div[1]/div/div/div/div[2]/form/div[10]/div/button[1]")
-        time.sleep(3)
+        time.sleep(1)
         comp_btn_element.click()
+        time.sleep(3)
 
     def extract_data_dict(self):
         return self.bym_extract_data, self.lv_extract_data
 
 
-def create_log_file(log_dir, log_path, write_mode, bym_dict, lv_dict):
+def create_log_file(log_dir, log_path, write_mode, bym_dict, lv_dict, exhbt_no):
     if not os.path.exists(log_dir):
         # ディレクトリが存在しない場合、ディレクトリを作成する
         os.makedirs(log_dir)
@@ -746,42 +758,58 @@ def create_log_file(log_dir, log_path, write_mode, bym_dict, lv_dict):
 
 
 if __name__ == '__main__':
-    BYM_INDEX = 0
-    LV_INDEX = 1
-    MESSAGE_INDEX = 2
-    COUNTRY_INDEX = 3
+    EXHBT_NO = 0
+    BYM_INDEX = 1
+    CHNL_INDEX = 2
+    PROD_CODE_LIST = 3
+    MESSAGE_INDEX = 4
+    COUNTRY_INDEX = 5
+
 
     log_id = "reimero2525@gmail.com"
     log_pass = "2525reina"
     # log_id = "tanabe.naoto3@gmail.com",
     # log_pass = "n0313123",
 
-    url_lists = [
-                ["https://www.buyma.com/item/66631139/",
-                "https://en.louisvuitton.com/eng-nl/products/luxembourg-trainer-nvprod1270499v", "", ""],
-                ]
+    # url_lists = [
+    #             ["https://www.buyma.com/item/64393389/",
+    #              "https://www.chanel.com/ja_JP/fashion/p/slg/ap1991y04059/ap1991y04059c3906/classic-small-wallet-lambskin-goldtone-metal-black.html",
+    #              "", "",
+    #              ["AP1991 Y04059 C3906"]],
+    #             ]
 
-    conter = 7
+
+    with open('input.csv', encoding="utf-8") as f:
+        reader = csv.reader(f)
+        url_lists = [row for row in reader]
+
+
     dt_now = datetime.datetime.now()
     now = dt_now.strftime('%Y%m%d-%H%M')
 
-    log_dir = "C:\\Users\\ntagu\\workspace\\til\\web_op\\exhibition_page_create_bym\\log\\"
+    log_dir = "C:\\Users\\ntagu\\workspace\\til\\web_op\\exhibition_page_create_bym_chnl\\log\\"
     log_path = log_dir + now + ".log"
     write_mode = "w"
     for url in url_lists:
-        exhbt_no = str(conter)
+        prod_code = url[PROD_CODE_LIST]
+        prod_code_num = int(len(prod_code) / 19)
+        prod_code_list = []
+        for c in range(prod_code_num):
+            prod_code_list.append(prod_code[c * 19:(c + 1) * 19])
+        url[PROD_CODE_LIST] = prod_code_list
         bym_page_creater = BymExhibitionPageCreater(ref_bym_url=url[BYM_INDEX],
-                                                    lv_url=url[LV_INDEX],
-                                                    exhbt_no=exhbt_no,
+                                                    chnl_url=url[CHNL_INDEX],
+                                                    prod_code_list=url[PROD_CODE_LIST],
+                                                    exhbt_no=url[EXHBT_NO],
                                                     title_msg=url[MESSAGE_INDEX],
-                                                    country=url[COUNTRY_INDEX],
+                                                    country="",
                                                     login_id=log_id,
                                                     login_pass=log_pass)
         # 抽出データの取得
         bym_dict, lv_dict = bym_page_creater.extract_data_dict()
 
         # 抽出データをログファイルの出力
-        create_log_file(log_dir, log_path, write_mode, bym_dict, lv_dict)
+        create_log_file(log_dir, log_path, write_mode, bym_dict, lv_dict, url[EXHBT_NO])
         write_mode = "a"
 
         # 抽出データの取得ができているかチェック
@@ -789,5 +817,4 @@ if __name__ == '__main__':
             # 抽出データをもとに出品ページ作成
             bym_page_creater.create_exhibit_page()
 
-        conter +=1
-        print("exhbt_no:", exhbt_no, "\n")
+        print("exhbt_no:", url[EXHBT_NO], "\n")

@@ -3,7 +3,7 @@ from requests_html import HTMLSession
 from bs4 import BeautifulSoup
 
 # Webページを取得して解析する
-en_prod_url = "https://fr.louisvuitton.com/fra-fr/produits/pochette-melanie-mm-monogram-empreinte-nvprod2020033v"
+en_prod_url = "https://uk.louisvuitton.com/eng-gb/products/monogram-watercolour-skater-hat-nvprod2810044v"
 jp_prod_tmp_url = "https://jp.louisvuitton.com/jpn-jp/search/"
 
 

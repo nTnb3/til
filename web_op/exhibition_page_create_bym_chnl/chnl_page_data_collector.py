@@ -50,11 +50,11 @@ class ChnlPageDataCollector(object):
 
     def _fetch_data(self):
         self._data_dict["prod_name"] = self._fetch_prod_name()
-        # self._data_dict["prod_code"] = self._fetch_prod_code()
+        self._data_dict["prod_code"] = self._fetch_prod_code()
         self._data_dict["prod_code_list"] = self.prod_code_list
         self._data_dict["prod_spec"] = self._fetch_prod_spec()
-        # self._data_dict["size_list"] = self._fetch_size_list()
-        # self._data_dict["size_table"] = self._fetch_size_table()
+        self._data_dict["size_list"] = self._fetch_size_list()
+        self._data_dict["size_table"] = self._fetch_size_table()
         # self._data_dict["color_list"] = self._fetch_color_list()
 
     def _fetch_prod_name(self):
@@ -84,7 +84,10 @@ class ChnlPageDataCollector(object):
     def _fetch_prod_spec(self):
         time.sleep(2)
         prod_spec = self.r.html.find('.fs-size__label')
-        proc_space_text = prod_spec[0].text
+        if len(prod_spec) > 0:
+            proc_space_text = prod_spec[0].text
+        else:
+            proc_space_text = ""
         return proc_space_text
 
     def _fetch_size_list(self):
@@ -103,54 +106,53 @@ class ChnlPageDataCollector(object):
         # buyma参考ページから取得
         time.sleep(2)
         self._activate_browser()
-        color_e = self.driver.execute_script('return document.querySelector("#main-wrapper > section > div > div.fs-productsheet__main.fs-price__mentioncontainer.fs-price__mentioncontainer--hasPrice > div.fs-productsheet__details > div.fs-productsheet__details-content > div.slick-loaded > div.fs-productsheet__section.fs-productsheet__materials-section > div > div > ul > div > div")')
-        # color_e = self.driver.execute_script('return document.getElementsByClassName("slick-track")')
-        # color = self.r.html.find('.lv-product-card__url')
+        # color_e = self.driver.execute_script('return document.querySelector("#main-wrapper > section > div > div.fs-productsheet__main.fs-price__mentioncontainer.fs-price__mentioncontainer--hasPrice > div.fs-productsheet__details > div.fs-productsheet__details-content > div.slick-loaded > div.fs-productsheet__section.fs-productsheet__materials-section > div > div > ul > div > div")')
         color_list = []
-        for e in color_e:
-            color_list.append([e.text])
+        # for e in color_e:
+        #     color_list.append([e.text])
         return color_list
 
     def _fetch_size_table(self):
-        self._activate_browser()
-        # サイズガイドを取得し、クリック
-        is_table = True
-        try:
-            element = self.driver.find_element_by_class_name('lv-product-size-guide__button').click()
-        except:
-            is_table = False
-        # 文字コードをUTF-8に変換
-        html = self.driver.page_source.encode('utf-8')
-        # ブラウザを閉じる
-        self._close_browser()
-
+        # self._activate_browser()
+        # # サイズガイドを取得し、クリック
+        # is_table = True
+        # try:
+        #     element = self.driver.find_element_by_class_name('lv-product-size-guide__button').click()
+        # except:
+        #     is_table = False
+        # # 文字コードをUTF-8に変換
+        # html = self.driver.page_source.encode('utf-8')
+        # # ブラウザを閉じる
+        # self._close_browser()
+        #
+        # table_str = ""
+        # if is_table:
+        #     # BeautifulSoupでhtmlをパース
+        #     soup = BeautifulSoup(html, "html.parser")
+        #     # table取得
+        #     table = soup.findAll("table", {"class": "lv-size-guide-table__table"})[0]
+        #     rows = table.findAll("tr")
+        #     row_count = 0
+        #     header = 0
+        #     for row in rows:
+        #         csvRow = ""
+        #         if row_count == header:
+        #             for cell in row.findAll(['td', 'th']):
+        #                 cell_str = cell.get_text()
+        #                 cell_str = cell_str.replace('\n', '')
+        #                 cell_str = cell_str.replace(' ', '')
+        #                 cell_str += ' / '
+        #                 csvRow += cell_str
+        #         else:
+        #             for cell in row.findAll(['td', 'th']):
+        #                 cell_str = cell.get_text()
+        #                 cell_str += ' / '
+        #                 csvRow += cell_str
+        #         csvRow = csvRow[:-3]
+        #         csvRow += "\n"
+        #         table_str += csvRow
+        #         row_count += 1
         table_str = ""
-        if is_table:
-            # BeautifulSoupでhtmlをパース
-            soup = BeautifulSoup(html, "html.parser")
-            # table取得
-            table = soup.findAll("table", {"class": "lv-size-guide-table__table"})[0]
-            rows = table.findAll("tr")
-            row_count = 0
-            header = 0
-            for row in rows:
-                csvRow = ""
-                if row_count == header:
-                    for cell in row.findAll(['td', 'th']):
-                        cell_str = cell.get_text()
-                        cell_str = cell_str.replace('\n', '')
-                        cell_str = cell_str.replace(' ', '')
-                        cell_str += ' / '
-                        csvRow += cell_str
-                else:
-                    for cell in row.findAll(['td', 'th']):
-                        cell_str = cell.get_text()
-                        cell_str += ' / '
-                        csvRow += cell_str
-                csvRow = csvRow[:-3]
-                csvRow += "\n"
-                table_str += csvRow
-                row_count += 1
         return table_str
 
     def _activate_browser(self):
